@@ -13,6 +13,9 @@ This project will serve the following goals.
 * Host accompanying presentations.
 * Provide support code in various languages.
 
+If you want to see where I am currently working on, visit the
+[Trello Board](https://trello.com/board/debruijn/4f4f58f89763e9d6727febff "Trello board for De Bruijn Sequences")
+
 Software Craftsmanship Conference
 ---------------------------------
 
