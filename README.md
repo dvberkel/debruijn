@@ -7,7 +7,8 @@ Craftsmanship Conference held at Bletchley Park on June 14th 2012
 Goals
 -----
 
-This project will serve the following goals.
+This project will serve the following goals. Make sure to checkout the
+[wikipage](https://github.com/dvberkel/debruijn/wiki "Project wiki pages") about the project.
 
 * Gathering place for information concerning the SC2012 entry.
 * Host accompanying presentations.
