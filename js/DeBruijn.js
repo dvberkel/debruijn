@@ -1,3 +1,6 @@
 (function(undefined){
-    window.DeBruijn = {};
+    var Combinatorics = {};
+    window.DeBruijn = {
+	Combinatorics: Combinatorics
+    };
 })()
