@@ -23,10 +23,10 @@ describe("DeBruijn", function(){
 		expect(DeBruijn.Combinatorics.allCombinations).toBeDefined();
 	    });
 
-	    it("should yield all combinations over an alphabet of length 1", function(){
+	    it("should yield all combinations of length 1", function(){
 		DeBruijn.Combinatorics.allCombinations(["a", "b"], 1, callback);
 		
-		expect(collector).toEqual([["a"], ["b"]]);
+		expect(collector).toContainExactly([["a"], ["b"]]);
 	    });
 	})
     });
