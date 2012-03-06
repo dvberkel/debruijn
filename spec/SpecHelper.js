@@ -1,6 +1,17 @@
 beforeEach(function(){
     var does = function(array){
 	return {
+	    containExactly : function(target){
+		if (array.length != target.length) {
+		    return false;
+		}
+		for (var i = 0; i < target.length; i++) {
+		    if (!does(array).contain(target[i])) {
+			return false;
+		    }
+		}
+		return true;
+	    },
 	    contain: function(target){
 		for (var i = 0; i < array.length; i++) {
 		    element = array[i];
@@ -31,16 +42,20 @@ beforeEach(function(){
 
     this.addMatchers({
 	toContainExactly: function(expected){
-	    var actual = this.actual;
-	    if (actual.length != expected.length) {
-		return false;
-	    }
-	    for (var i = 0; i < expected.length; i++) {
-		if (!does(actual).contain(expected[i])) {
-		    return false;
-		}
-	    }
-	    return true;
+	    return does(this.actual).containExactly(expected);
+	},
+	toBeDeBruijn: function(alphabet, order){
+	    var subsequences = [];
+	    DeBruijn.Combinatorics.allCyclicSubsequences(this.actual, order, function(subsequence){
+		subsequences.push(subsequence);
+	    });
+
+	    var combinations = [];
+	    DeBruijn.Combinatorics.allCombinations(alphabet, order, function(combination){
+		combinations.push(combination);
+	    });
+
+	    return does(subsequences).containExactly(combinations);
 	}
     });
 });
