@@ -21,4 +21,8 @@ describe("expect(array).toContainExactly(array)", function(){
     it("should not accept array with different elements", function(){
 	expect(["a", "b"]).not.toContainExactly(["a", "c"]);
     });
+
+    it("should accept array with array as elements", function(){
+	expect([["a"], ["b"]]).toContainExactly([["a"], ["b"]]);
+    });
 });
