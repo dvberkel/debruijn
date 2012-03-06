@@ -9,16 +9,22 @@ describe("DeBruijn", function(){
 	});
 
 	describe("DeBruijn.Combinatorics.allCombinations", function(){
+	    var collector;
+	    var callback;
+
+	    beforeEach(function(){
+		collector = [];
+		callback = function(combination){
+		    collector.push(combination);
+		};
+	    });
+
 	    it("should exists", function(){
 		expect(DeBruijn.Combinatorics.allCombinations).toBeDefined();
 	    });
 
 	    it("should yield all combinations over an alphabet of length 1", function(){
-		var collector = [];
-		
-		DeBruijn.Combinatorics.allCombinations(["a", "b"], 1, function(combination){
-		    collector.push(combination);
-		});
+		DeBruijn.Combinatorics.allCombinations(["a", "b"], 1, callback);
 		
 		expect(collector).toEqual([["a"], ["b"]]);
 	    });

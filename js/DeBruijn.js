@@ -1,7 +1,8 @@
 (function(undefined){
     var Combinatorics = {
 	allCombinations : function(alphabet, length, callback){
-	    return [["a"], ["b"]];
+	    callback(["a"]);
+	    callback(["b"])
 	}
     };
 
