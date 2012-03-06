@@ -1,23 +1,11 @@
 beforeEach(function(){
-    var arrayEquals = function(anArray, otherArray){
-	if (anArray.length != otherArray.length) {
-	    return false
-	}
-	for (var i = 0; i < anArray.length; i++) {
-	    if (anArray[i] != otherArray[i]) {
-		return false;
-	    }
-	}
-	return true;
-    }
-
     var does = function(array){
 	return {
 	    contain: function(target){
 		for (var i = 0; i < array.length; i++) {
 		    element = array[i];
 		    if (element instanceof Array && target instanceof Array) {
-			if (arrayEquals(element, target)) {
+			if (does(element).equal(target)) {
 			    return true;
 			}
 		    }
@@ -26,6 +14,17 @@ beforeEach(function(){
 		    }
 		}
 		return false;
+	    },
+	    equal: function(target){
+		if (array.length != target.length) {
+		    return false
+		}
+		for (var i = 0; i < array.length; i++) {
+		    if (array[i] != target[i]) {
+			return false;
+		    }
+		}
+		return true;
 	    }
 	};
     };
