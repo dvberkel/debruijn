@@ -1,5 +1,10 @@
 (function(undefined){
-    var Combinatorics = {};
+    var Combinatorics = {
+	allCombinations : function(alphabet, length, callback){
+	    return [["a"], ["b"]];
+	}
+    };
+
     window.DeBruijn = {
 	Combinatorics: Combinatorics
     };
