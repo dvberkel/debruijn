@@ -8,7 +8,7 @@ describe("DeBruijn", function(){
 	    expect(DeBruijn.Combinatorics).toBeDefined();
 	});
 
-	describe("DeBruijn.Combinatorics.allCombinations", function(){
+	describe("DeBruijn.Combinatorics.allCombinations()", function(){
 	    var collector;
 	    var callback;
 
@@ -40,6 +40,34 @@ describe("DeBruijn", function(){
 		
 		expect(collector).toContainExactly([["a", "a"], ["a", "b"], ["b", "a"], ["b", "b"]]);
 	    });
-	})
+	});
+
+	describe("DeBruijn.Combinatorics.allCyclicSubSequences()", function(){
+	    var collector;
+	    var callback;
+	    
+	    beforeEach(function(){
+		collector = [];
+		callback = function(subsequence){
+		    collector.push(subsequence);
+		};
+	    });
+	    
+	    it("should exist", function(){
+		expect(DeBruijn.Combinatorics.allCyclicSubsequences).toBeDefined();
+	    });
+
+	    it("should yield all subsequences of length 1", function(){
+		DeBruijn.Combinatorics.allCyclicSubsequences(["a", "b", "c"], 1, callback);
+
+		expect(collector).toContainExactly([["a"], ["b"], ["c"]]);
+	    });
+
+	    it("should yield all subsequences of length 2", function(){
+		DeBruijn.Combinatorics.allCyclicSubsequences(["a", "b", "c"], 2, callback);
+
+		expect(collector).toContainExactly([["a", "b"], ["b", "c"], ["c", "a"]]);
+	    });
+	});
     });
 });

@@ -12,6 +12,12 @@
 		    }
 		});
 	    }
+	},
+	allCyclicSubsequences : function(sequence, length, callback) {
+	    doubleSequence = sequence.concat(sequence);
+	    for (var i = 0; i < sequence.length; i++) {
+		callback(doubleSequence.slice(i, i+length));
+	    }
 	}
     };
 
