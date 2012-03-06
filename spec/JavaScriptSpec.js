@@ -4,4 +4,8 @@ describe("array[-index]", function(){
 
 	expect(array[-1]).not.toEqual("c");
     });
+
+    it("[] is not falsy", function(){
+	expect([]).not.toBeFalsy();
+    });
 });
