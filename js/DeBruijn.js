@@ -1,0 +1,3 @@
+(function(undefined){
+    window.DeBruijn = {};
+})()

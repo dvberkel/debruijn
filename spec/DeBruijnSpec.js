@@ -1,5 +1,5 @@
 describe("DeBruijn", function(){
-    it("should run correctly", function(){
-	expect(1).toEqual(1);
+    it("should exist", function(){
+	expect(DeBruijn).toBeDefined();
     });
 });
