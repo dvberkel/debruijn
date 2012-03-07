@@ -18,6 +18,17 @@
 	    for (var i = 0; i < sequence.length; i++) {
 		callback(doubleSequence.slice(i, i+length));
 	    }
+	},
+	lyndonWords : function(k, n, callback) {
+	    var word = [-1];
+	    while (false) {
+		word[word.length - 1] += 1;
+		callback(word);
+		var length = m.length;
+		
+	    }
+	    callback([0]);
+	    callback([1]);
 	}
     };
 

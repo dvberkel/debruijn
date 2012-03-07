@@ -69,5 +69,36 @@ describe("DeBruijn", function(){
 		expect(collector).toContainExactly([["a", "b"], ["b", "c"], ["c", "a"]]);
 	    });
 	});
+
+	describe("DeBruijn.Combinatorics.lyndonWords", function(){
+	    var collector;
+	    var callback;
+
+	    beforeEach(function(){
+		collector = []
+		callback = function(lyndonWord){
+		    collector.push(lyndonWord);
+		};
+	    });
+
+	    it("should exist", function(){
+		expect(DeBruijn.Combinatorics.lyndonWords).toBeDefined();
+	    });
+
+	    it("should enumerate all Lyndon words upto length 1", function(){
+
+		DeBruijn.Combinatorics.lyndonWords(2, 1, callback);
+		
+		expect(collector).toEqual([[0], [1]]);
+	    });
+	    
+	    xit("should enumerate all Lyndon words upto length 2", function(){
+
+		DeBruijn.Combinatorics.lyndonWords(2, 2, callback);
+		
+		expect(collector).toEqual([[0], [0, 1] ,[1]]);
+	    });
+	    
+	});
     });
 });
