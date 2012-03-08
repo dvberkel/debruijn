@@ -72,12 +72,47 @@
     });
 
     bruijn.ProofView = Backbone.View.extend({
+	headerTemplate: _.template("<tr><th><%= header %></th></tr>"),
+	rowTemplate: _.template("<tr><td><%= row %></td></tr>"),
+
 	initialize: function(){
+	    this.model.bind("change", function(){
+		this.render();
+	    }, this);
 	    this. render();
 	},
 
 	render: function(){
-	    $(this.el).html("<tr><th>0</th><th>0</th><th>1</th><th>1</th><th>0</th></tr><tr><td>0</td><td>0</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>");
+	    var view = this;
+	    var model = view.model;
+	    var k = model.get("k");
+	    var n = model.get("n");
+	    var sequence = DeBruijn.sequence(model.get("alphabet").slice(0, k), n);
+	    var element = $(view.el);
+	    element.empty().append(view.headerTemplate({header: sequence.join("</th><th>")}));
+	    var count = 0, blanks = view.blanks(sequence.length - n);
+	    DeBruijn.Combinatorics.allCyclicSubsequences(sequence, n, function(subsequence){
+		var row = view.roll(count++)(subsequence.concat(blanks));
+		element.append(view.rowTemplate({row: row.join("</td><td>")}));
+	    });
+	},
+
+	blanks: function(numberOfBlanks) {
+	    var blanks = [];
+	    for (var i = 0; i < numberOfBlanks; i++) {
+		blanks.push("&nbsp;");
+	    }
+	    return blanks;
+	},
+
+	roll: function(i) {
+	    return function(array) {
+		var length = array.length;
+		var cutAt = length - i;
+		var result = array.slice(cutAt, cutAt + i).concat(array.slice(0, cutAt));
+		console.log(result);
+		return result;
+	    }
 	}
     });
 })( jQuery, _, Backbone, DeBruijn );
