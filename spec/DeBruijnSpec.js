@@ -108,4 +108,22 @@ describe("DeBruijn", function(){
 	    });
 	});
     });
+
+    describe("DeBruijn.sequence",function(){
+	it("should exist", function(){
+	    expect(DeBruijn.sequence).toBeDefined();
+	});
+
+	it("should generate a valid De Bruijn sequence of length 1", function(){
+	    expect(DeBruijn.sequence(["a", "b"], 1)).toBeDeBruijn(["a", "b"], 1);
+	});
+
+	it("should generate a valid De Bruijn sequence of length 2", function(){
+	    expect(DeBruijn.sequence(["a", "b"], 2)).toBeDeBruijn(["a", "b"], 2);
+	});
+
+	it("should generate a valid De Bruijn sequence of length 3", function(){
+	    expect(DeBruijn.sequence(["a", "b"], 3)).toBeDeBruijn(["a", "b"], 3);
+	});
+    });
 });

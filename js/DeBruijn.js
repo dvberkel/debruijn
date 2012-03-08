@@ -35,7 +35,28 @@
 	}
     };
 
+    var map = function(array, f){
+	var result = [];
+	for (var i = 0; i < array.length; i++) {
+	    result.push(f(array[i]));
+	}
+	return result;	
+    };
+
+    var sequence = function(alphabet, n) {
+	var sequence = [];
+	DeBruijn.Combinatorics.lyndonWords(alphabet.length, n, function(word){
+	    if (n % word.length == 0) {
+		sequence = sequence.concat(map(word, function(index){
+		    return alphabet[index];		    
+		}));
+	    }
+	});
+	return sequence;
+    };
+
     window.DeBruijn = {
-	Combinatorics: Combinatorics
+	Combinatorics: Combinatorics,
+	sequence: sequence
     };
 })()
