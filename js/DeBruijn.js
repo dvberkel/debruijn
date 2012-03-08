@@ -44,12 +44,12 @@
     };
 
     var sequence = function(alphabet, n) {
-	var sequence = [];
+	var sequence = [], mapping = function(index){
+	    return alphabet[index];
+	};
 	DeBruijn.Combinatorics.lyndonWords(alphabet.length, n, function(word){
 	    if (n % word.length == 0) {
-		sequence = sequence.concat(map(word, function(index){
-		    return alphabet[index];		    
-		}));
+		sequence = sequence.concat(map(word, mapping));
 	    }
 	});
 	return sequence;
