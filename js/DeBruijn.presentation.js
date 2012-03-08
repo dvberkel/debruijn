@@ -70,4 +70,14 @@
 	    $(this.el).html(sequence.join(" "));
 	}
     });
+
+    bruijn.ProofView = Backbone.View.extend({
+	initialize: function(){
+	    this. render();
+	},
+
+	render: function(){
+	    $(this.el).html("<tr><th>0</th><th>0</th><th>1</th><th>1</th><th>0</th></tr><tr><td>0</td><td>0</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>");
+	}
+    });
 })( jQuery, _, Backbone, DeBruijn );
