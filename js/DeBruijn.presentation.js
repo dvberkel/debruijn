@@ -89,11 +89,13 @@
 	    var n = model.get("n");
 	    var sequence = DeBruijn.sequence(model.get("alphabet").slice(0, k), n);
 	    var element = $(view.el);
-	    element.empty().append(view.headerTemplate({header: sequence.join("</th><th>")}));
+	    var header = element.children("thead");
+	    var body = element.children("tbody").empty();
+	    header.empty().append(view.headerTemplate({header: sequence.join("</th><th>")}));
 	    var count = 0, blanks = view.blanks(sequence.length - n);
 	    DeBruijn.Combinatorics.allCyclicSubsequences(sequence, n, function(subsequence){
 		var row = view.roll(count++)(subsequence.concat(blanks));
-		element.append(view.rowTemplate({row: row.join("</td><td>")}));
+		body.append(view.rowTemplate({row: row.join("</td><td>")}));
 	    });
 	},
 
