@@ -9,7 +9,8 @@
 	    'prefix': 'toc',
 	    'highlightOnScroll': false
 	});
-
-	new DeBruijn.VariableView({el: $("#example-k")});
+	
+	var example = new DeBruijn.Model();
+	new DeBruijn.VariableView({el: $("#example-k"), model: example});
     });
 })( jQuery );
