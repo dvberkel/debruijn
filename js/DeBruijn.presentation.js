@@ -33,11 +33,15 @@
 	template: _.template("{ <%= alphabet %> }"),
 
 	initialize: function(){
+	    this.model.bind("change:k", function(){
+		this.render();
+	    }, this);
 	    this.render();
 	},
 	
 	render: function(){
-	    var alphabet = "0, 1";
+	    var model = this.model;
+	    var alphabet = model.get("alphabet").slice(0, model.get("k")).join(", ");
 	    $(this.el).html(this.template({alphabet: alphabet}));
 	}
     });
