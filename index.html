@@ -82,14 +82,22 @@
 	  <li class="slide">Find an Eulerian Cycle</li>
 	</ol>
 	<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-	  <circle cx="50" cy="50" r="25" stroke="red" />
-	  <text x="50" y="50" style="fill: red">0 0</text>
-	  <circle cx="150" cy="50" r="25" stroke="red" />
-	  <text x="150" y="50" style="fill: red">1 0</text>
-	  <circle cx="50" cy="150" r="25" stroke="red" />
-	  <text x="50" y="150" style="fill: red">0 1</text>
-	  <circle cx="150" cy="150" r="25" stroke="red" />
-	  <text x="150" y="150" style="fill: red">1 1</text>
+	  <g transform="translate(50,50)">
+	    <circle cx="0" cy="0" r="25" stroke="red" />
+	    <text x="0" y="0" style="fill: red">0 0</text>
+	  </g>
+	  <g transform="translate(150,50)">
+	    <circle cx="0" cy="0" r="25" stroke="red" />
+	    <text x="0" y="0" style="fill: red">1 0</text>
+	  </g>
+	  <g transform="translate(50,150)">
+	    <circle cx="0" cy="0" r="25" stroke="red" />
+	    <text x="0" y="0" style="fill: red">0 1</text>
+	  </g>
+	  <g transform="translate(150,150)">
+	    <circle cx="0" cy="0" r="25" stroke="red" />
+	    <text x="0" y="0" style="fill: red">1 1</text>
+	  </g>
 	</svg>
       </section>
       
