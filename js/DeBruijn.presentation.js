@@ -40,9 +40,19 @@
 	},
 	
 	render: function(){
+	    $(this.el).html(this.template(this.alphabet()));
+	},
+
+	alphabet: function(){
 	    var model = this.model;
-	    var alphabet = model.get("alphabet").slice(0, model.get("k")).join(", ");
-	    $(this.el).html(this.template({alphabet: alphabet}));
+	    var k = model.get("k");
+	    var alphabet = model.get("alphabet");
+	    if (k < 4) {
+		return { alphabet: alphabet.slice(0, k).join(", ") };
+	    } else {
+		
+		return { alphabet: [alphabet[0], alphabet[k - 1]].join(", ..., ")};
+	    }
 	}
     });
 
