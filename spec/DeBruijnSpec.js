@@ -92,13 +92,20 @@ describe("DeBruijn", function(){
 		expect(collector).toEqual([[0], [1]]);
 	    });
 	    
-	    xit("should enumerate all Lyndon words upto length 2", function(){
+	    it("should enumerate all Lyndon words upto length 2", function(){
 
 		DeBruijn.Combinatorics.lyndonWords(2, 2, callback);
 		
 		expect(collector).toEqual([[0], [0, 1] ,[1]]);
 	    });
+
 	    
+	    it("should enumerate all Lyndon words upto length 3", function(){
+
+		DeBruijn.Combinatorics.lyndonWords(2, 3, callback);
+		
+		expect(collector).toEqual([[0], [0, 0, 1], [0, 1], [0, 1, 1] ,[1]]);
+	    });
 	});
     });
 });

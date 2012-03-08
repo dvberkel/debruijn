@@ -21,14 +21,17 @@
 	},
 	lyndonWords : function(k, n, callback) {
 	    var word = [-1];
-	    while (false) {
+	    while (word.length > 0) {
 		word[word.length - 1] += 1;
-		callback(word);
-		var length = m.length;
-		
+		callback(word.slice(0));
+		var initialLength = word.length;
+		while (word.length < n) {
+		    word.push(word[word.length - initialLength]);
+		}
+		while (word.length > 0 && word[word.length - 1] == k - 1) {
+		    word.pop();
+		}
 	    }
-	    callback([0]);
-	    callback([1]);
 	}
     };
 
