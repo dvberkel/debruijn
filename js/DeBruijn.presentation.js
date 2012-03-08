@@ -30,12 +30,15 @@
     });
 
     bruijn.AlphabetView = Backbone.View.extend({
+	template: _.template("{ <%= alphabet %> }"),
+
 	initialize: function(){
 	    this.render();
 	},
 	
 	render: function(){
-	    $(this.el).html("{0, 1}");
+	    var alphabet = "0, 1";
+	    $(this.el).html(this.template({alphabet: alphabet}));
 	}
     });
 
