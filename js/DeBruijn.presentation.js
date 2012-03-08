@@ -28,4 +28,14 @@
 	    });
 	}
     });
+
+    bruijn.SequenceView = Backbone.View.extend({
+	initialize: function(){
+	    this.render()
+	},
+	
+	render: function(){
+	    $(this.el).html("0 0 0 1 0 1 1 1");
+	}
+    });
 })( jQuery, _, Backbone, DeBruijn );
