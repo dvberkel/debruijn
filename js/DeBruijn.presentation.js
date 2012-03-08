@@ -5,23 +5,27 @@
 
     bruijn.VariableView = Backbone.View.extend({
 	template: _.template("<span><%= value %></span><input type='text' value='<%= value %>' size='1'/>"),
-	show: true,
 
 	initialize: function(){
+	    this.model.bind("change:" + this.options.variable, function(){
+		this.render();
+	    }, this);
 	    this.render();
 	},
 	
 	render: function(){
-	    $(this.el).html(this.template({
-		value: this.model.get(this.options.variable)
+	    var view = this;
+	    var element = $(view.el);
+	    element.html(view.template({
+		value: view.model.get(view.options.variable)
 	    }));
-	    var elementToHide;
-	    if (this.show) {
-		elementToHide = $(this.el).children("input");
-	    } else {
-		elementToHide = $(this.el).children("span");
-	    }
-	    elementToHide.hide();
+	    element.children("input").blur(function(){
+		view.model.set(view.options.variable, parseInt(this.value));
+	    }).hide();
+	    element.children("span").click(function(){
+		element.children().toggle();
+		element.children("input").focus();
+	    });
 	}
     });
 })( jQuery, _, Backbone, DeBruijn );
