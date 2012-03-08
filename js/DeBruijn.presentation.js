@@ -9,7 +9,7 @@
 	},
 	
 	render: function(){
-	    $(this.el).html(this.model.get("k"));
+	    $(this.el).html(this.model.get(this.options.variable));
 	}
     });
 })( jQuery, _, Backbone, DeBruijn );

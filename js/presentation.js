@@ -11,6 +11,6 @@
 	});
 	
 	var example = new DeBruijn.Model();
-	new DeBruijn.VariableView({el: $("#example-k"), model: example});
+	new DeBruijn.VariableView({el: $("#example-k"), model: example, variable: "k"});
     });
 })( jQuery );
