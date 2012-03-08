@@ -29,6 +29,16 @@
 	}
     });
 
+    bruijn.AlphabetView = Backbone.View.extend({
+	initialize: function(){
+	    this.render();
+	},
+	
+	render: function(){
+	    $(this.el).html("{0, 1}");
+	}
+    });
+
     bruijn.SequenceView = Backbone.View.extend({
 	initialize: function(){
 	    this.model.bind("change", function(){
