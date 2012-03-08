@@ -13,6 +13,6 @@
 	var example = new DeBruijn.Model();
 	new DeBruijn.VariableView({el: $("#example-k"), model: example, variable: "k"});
 	new DeBruijn.VariableView({el: $("#example-n"), model: example, variable: "n"});
-	new DeBruijn.SequenceView({el: $("#example-sequence")});
+	new DeBruijn.SequenceView({el: $("#example-sequence"), model: example});
     });
 })( jQuery );

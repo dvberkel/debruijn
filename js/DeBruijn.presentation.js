@@ -1,6 +1,6 @@
 (function($, _, Backbone, bruijn, undefined){
     bruijn.Model = Backbone.Model.extend({
-	defaults: { k: 2, n: 3 }
+	defaults: { k: 2, n: 3, alphabet: ["0", "1", "2", "3"] }
     });
 
     bruijn.VariableView = Backbone.View.extend({
@@ -31,11 +31,16 @@
 
     bruijn.SequenceView = Backbone.View.extend({
 	initialize: function(){
+	    this.model.bind("change", function(){
+		this.render();
+	    }, this);
 	    this.render()
 	},
 	
 	render: function(){
-	    $(this.el).html("0 0 0 1 0 1 1 1");
+	    var model = this.model;
+	    var sequence = DeBruijn.sequence(model.get("alphabet").slice(0, model.get("k")), model.get("n"));
+	    $(this.el).html(sequence.join(" "));
 	}
     });
 })( jQuery, _, Backbone, DeBruijn );
