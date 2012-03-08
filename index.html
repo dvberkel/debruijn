@@ -15,12 +15,14 @@
     <script type="text/javascript" src="deck/extensions/menu/deck.menu.js"></script>
     <script type="text/javascript" src="deck/extensions/status/deck.status.js"></script>
     <script type="text/javascript" src="deck/extensions/hash/deck.hash.js"></script>
+    <script type="text/javascript" src="d3/d3.v2.min.js"></script>
     <script type="text/javascript" src="lib/jquery.toc.min.js"></script>
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/backbone-min.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <script type="text/javascript" src="js/DeBruijn.js"></script>
     <script type="text/javascript" src="js/DeBruijn.presentation.js"></script>
+    <script type="text/javascript" src="js/DeBruijn.graph.js"></script>
     <script type="text/javascript" src="js/presentation.js"></script>
   </head>
   <body>
@@ -81,6 +83,7 @@
 	  <li class="slide">Connect a pair of combinations with a correct edge</li>
 	  <li class="slide">Find an Eulerian Cycle</li>
 	</ol>
+	<div id="graph"></div>
 	<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
 	  <g transform="translate(50,50)">
 	    <circle cx="0" cy="0" r="25" stroke="red" />
