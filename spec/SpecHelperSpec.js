@@ -5,21 +5,27 @@ describe("expect(array).toContain(element)", function(){
 });
 
 describe("expect(array).toContainExactly(array)", function(){
+    var alphabet;
+
+    beforeEach(function(){
+	alphabet = ["a", "b"];
+    });
+
     it("should accept same elements", function(){
-	expect(["a", "b"]).toContainExactly(["a", "b"]);
+	expect(alphabet).toContainExactly(["a", "b"]);
     });
 
     it("should accept same elements even in different order", function(){
-	expect(["a", "b"]).toContainExactly(["b", "a"]);
+	expect(alphabet).toContainExactly(["b", "a"]);
     });
 
     it("should not accept array of different length", function(){
-	expect(["a", "b"]).not.toContainExactly(["a"]);
-	expect(["a", "b"]).not.toContainExactly(["a", "b", "c"]);
+	expect(alphabet).not.toContainExactly(["a"]);
+	expect(alphabet).not.toContainExactly(["a", "b", "c"]);
     });
 
     it("should not accept array with different elements", function(){
-	expect(["a", "b"]).not.toContainExactly(["a", "c"]);
+	expect(alphabet).not.toContainExactly(["a", "c"]);
     });
 
     it("should accept array with array as elements", function(){
