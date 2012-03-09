@@ -1,0 +1,9 @@
+line.link {
+    stroke: #aaaaaa;
+    stroke-width: 4px;
+}
+
+circle.node {
+    stroke: #000000;
+    stroke-width: 1px;
+}
