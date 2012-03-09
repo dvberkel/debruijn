@@ -16,5 +16,11 @@
 	new DeBruijn.AlphabetView({el: $("#example-alphabet"), model: example});
 	new DeBruijn.SequenceView({el: $("#example-sequence"), model: example});
 	new DeBruijn.ProofView({el: $("#example-proof"), model: example});
+
+	var graph = new DeBruijn.Model({alphabet: ["a", "b", "c", "d", "e"]});
+	new DeBruijn.VariableView({el: $("#graph-k"), model: graph, variable: "k"});
+	new DeBruijn.VariableView({el: $("#graph-n"), model: graph, variable: "n"});
+	new DeBruijn.AlphabetView({el: $("#graph-alphabet"), model: graph});
+	new DeBruijn.GraphView({el: $("#graph"), model: graph});
     });
 })( jQuery );

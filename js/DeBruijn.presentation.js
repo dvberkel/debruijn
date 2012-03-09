@@ -112,7 +112,6 @@
 		var length = array.length;
 		var cutAt = length - i;
 		var result = array.slice(cutAt, cutAt + i).concat(array.slice(0, cutAt));
-		console.log(result);
 		return result;
 	    }
 	}
