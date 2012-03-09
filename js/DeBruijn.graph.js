@@ -47,7 +47,17 @@
 	    }
 	};
     };
+
+    var allCombinations = function(alphabet, n) {
+	var combinations = [];
+	bruijn.Combinatorics.allCombinations(alphabet, n, function(word){
+	    combinations.push(word);
+	});
+	return combinations;
+    };
+
     
+
     bruijn.GraphView = Backbone.View.extend({
 	initialize: function(){
 	    this.model.bind("change", function(){
@@ -62,10 +72,7 @@
 	    var alphabet = model.get("alphabet").slice(0, model.get("k"));
 	    var n = model.get("n");
 	    
-	    var combinations = [];
-	    bruijn.Combinatorics.allCombinations(alphabet, n - 1, function(word){
-		combinations.push(word);
-	    });
+	    var combinations = allCombinations(alphabet, n - 1);
 	    
 	    var nodes = _.map(combinations, function(combination){
 		return {word: combination.join("")};
