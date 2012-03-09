@@ -50,6 +50,9 @@
     
     bruijn.GraphView = Backbone.View.extend({
 	initialize: function(){
+	    this.model.bind("change", function(){
+		this.render();
+	    }, this);
 	    this.render();
 	},
 	
@@ -78,7 +81,9 @@
 	    });
 
 	    var options = view.options;
-	    var svg = d3.select("#" + $(this.el).attr('id')).append("svg")
+	    var element = $(view.el);
+	    element.empty();
+	    var svg = d3.select("#" + element.attr('id')).append("svg")
 	        .attr("width", options.width)
 	        .attr("height", options.height);
 
