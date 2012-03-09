@@ -4,7 +4,7 @@
     });
 
     bruijn.VariableView = Backbone.View.extend({
-	template: _.template("<span><%= value %></span><input type='text' value='<%= value %>' size='1'/>"),
+	template: _.template("<span><%= value %></span><input type='text' value='<%= value %>' class='variable' size='1'/>"),
 
 	initialize: function(){
 	    this.model.bind("change:" + this.options.variable, function(){
@@ -20,6 +20,7 @@
 		value: view.model.get(view.options.variable)
 	    }));
 	    element.children("input").blur(function(){
+		element.children().toggle();
 		view.model.set(view.options.variable, parseInt(this.value));
 	    }).hide();
 	    element.children("span").click(function(){
