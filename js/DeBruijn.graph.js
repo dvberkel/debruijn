@@ -55,8 +55,8 @@
 	    }, this);
 	    this.render();
 	},
-	
-	render: function(){
+
+	graphData: function(){
 	    var view = this;
 	    var model = view.model;
 	    var alphabet = model.get("alphabet").slice(0, model.get("k"));
@@ -79,6 +79,13 @@
 		    links.push({source: sourceIndex, target: targetIndex, letter: letter});
 		});
 	    });
+	    
+	    return {nodes: nodes, links: links};
+	},
+	
+	render: function(){
+	    var view = this;
+	    var graphData = view.graphData();
 
 	    var options = view.options;
 	    var element = $(view.el);
@@ -88,17 +95,17 @@
 	        .attr("height", options.height);
 
 	    var force = d3.layout.force().charge(-120).linkDistance(30).size([options.width, options.height])
-	        .nodes(nodes)
-	        .links(links).start();
+	        .nodes(graphData.nodes)
+	        .links(graphData.links).start();
 	    
 	    var link = svg.selectAll("line.link")
-		.data(links)
+		.data(graphData.links)
 		.enter().append("line")
 		.attr("class", "link")
 		.style("stroke-width", 2);
 
 	    var node = svg.selectAll("circle.node")
-	        .data(nodes)
+	        .data(graphData.nodes)
 		.enter().append("circle")
 		.attr("class", "node")
 	        .attr("r", 5)
