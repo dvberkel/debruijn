@@ -56,7 +56,24 @@
 	return combinations;
     };
 
-    
+    var allNodes = function(combinations){
+	return _.map(combinations, function(combination){
+	    return {word: combination.join("")};
+	});
+    };
+
+    var allLinks = function(alphabet, combinations){
+	var links = [], searcher = within(combinations);
+	_.each(combinations, function(combination, sourceIndex){
+	    var combi = on(combination);
+	    _.each(alphabet, function(letter){
+		var target = combi.pipe(letter);
+		var targetIndex = searcher.locate(target);
+		links.push({source: sourceIndex, target: targetIndex, letter: letter});
+	    });
+	});
+	return links
+    };
 
     bruijn.GraphView = Backbone.View.extend({
 	initialize: function(){
@@ -74,18 +91,8 @@
 	    
 	    var combinations = allCombinations(alphabet, n - 1);
 	    
-	    var nodes = _.map(combinations, function(combination){
-		return {word: combination.join("")};
-	    });
-	    var links = [], searcher = within(combinations);
-	    _.each(combinations, function(combination, sourceIndex){
-		var combi = on(combination);
-		_.each(alphabet, function(letter){
-		    var target = combi.pipe(letter);
-		    var targetIndex = searcher.locate(target);
-		    links.push({source: sourceIndex, target: targetIndex, letter: letter});
-		});
-	    });
+	    var nodes = allNodes(combinations);
+	    var links = allLinks(alphabet, combinations);
 	    
 	    return {nodes: nodes, links: links};
 	},
