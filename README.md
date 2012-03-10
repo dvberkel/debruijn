@@ -1,85 +1,45 @@
-De Bruijn Sequences
-===================
+Java with Maven De Bruijn Sequences
+===================================
 
-This project will be proposed as an entry for the 2012 Software
-Craftsmanship Conference held at Bletchley Park on June 14th 2012
+This branch is a compendium to the De Bruijn project. It provides
+support code which a participate can use to start-off implementing De
+Bruijn sequences.
 
-Goals
------
+See the [main branch](https://github.com/dvberkel/debruijn "Main Branch") 
+for an exposition about the entire project.
 
-This project will serve the following goals. Make sure to checkout the
-[wikipage](https://github.com/dvberkel/debruijn/wiki "Project wiki pages") about the project.
+Goal
+----
 
-* Gathering place for information concerning the SC2012 entry.
-* Host accompanying presentations.
-* Provide support code in various languages.
+The project has a number of tests. All of which are failing at the
+moment.
 
-If you want to see where I am currently working on, visit the
-[Trello Board](https://trello.com/board/debruijn/4f4f58f89763e9d6727febff "Trello board for De Bruijn Sequences")
+Your mission, should you chose to accept it, is to make all the test pass.
 
-Software Craftsmanship Conference
----------------------------------
+Environment
+-----------
 
-[Software Craftsmanship 2012](http://www.codemanship.co.uk/softwarecraftsmanship/ "Homepage for SC2012")
-(SC2012) is the fourth international conference for software
-craftsmen. This years theme is *Computer Science for Software
-Craftsman*, in celebration of the work of computer pioneer Alan
-Turing.
+[Maven](http://maven.apache.org/ "Homepage of Maven") is used to
+automate our build.
 
-### Alan Turing
+> Apache Maven is a software project management and comprehension
+> tool. Based on the concept of a project object model (POM), Maven
+> can manage a project's build, reporting and documentation from a
+> central piece of information.
 
-[Alan Turing](http://en.wikipedia.org/wiki/Alan_Turing "Wikipedia on Alan Turing")
-was a English mathematician. His seminal paper "On Computable Numbers,
-with an Application to the Entscheidungsproblem" introduced
-[Turing machines](http://en.wikipedia.org/wiki/Turing_machine "Wikipedia on Turing Machines")
-, an abstract machine capable of performing computations.
+The [documentation](http://maven.apache.org/users/index.html "Information how to setup Maven")
+page lists information how to setup Maven.
 
-During the Second World War he was at Bletchley Park and played a
-pivotal role in breaking the
-[Enigma](http://en.wikipedia.org/wiki/Enigma_machine "Wikipedia on the Enigma").
+### Eclipse
 
-### Bletchley Park
+The following command generate an eclipse project definition.
 
-[Bletchley Park](http://en.wikipedia.org/wiki/Bletchley_Park "Wikipedia on Bletchley Park")
-is an estate in Bletchley England which house the National Codes
-Centre and the National Museum for Computing.
+    > mvn eclipse:eclipse
 
-During the Second World war it was the center of the United Kingdom's
-decryption establishment.
+This allows a participant to import the project into eclipse.
 
-De Bruijn Sequences
--------------------
+### Running Test
 
-From Wikipedia on [De Bruijn Sequence](http://en.wikipedia.org/wiki/De_Bruijn_sequence "Wikipedia on De Bruijn Sequence")
+    > mvn test
 
-> a *k-ary* **De Bruijn sequence** *B(k, n)* of order *n* is a cyclic
-> sequence of a given alphabet *A* with size *k* for which every possible
-> subsequence of length *n* in *A* appears as a sequence of consecutive
-> characters exactly once.
-
-An example of a De Bruijn sequence *B(3, 2)* for the alphabet
-`{0, 1, 2}` is given below.
-
-    0 0 1 1 0 2 1 2 2
-
-Notice this sequence has the stated property as can seen by taking
-consequtive consecutive characters.
-
-    0 0 1 1 0 2 1 2 2
-    0 0
-      0 1
-        1 1
-          1 0
-            0 2
-              2 1
-                1 2
-                  2 2
-    0               2
-
-### De Bruijn
-
-De Bruijn sequences are named after
-[Nicolaas Govert de Bruijn](http://en.wikipedia.org/wiki/Nicolaas_Govert_de_Bruijn "Wikipedia on Nicolaas de Bruijn")
-, a Dutch mathematician who was, until recently, affiliated as
-professor emeritus at the Eindhoven University of Technology. He
-passed away on 17 February 2012.
+The command above runs all the tests.
