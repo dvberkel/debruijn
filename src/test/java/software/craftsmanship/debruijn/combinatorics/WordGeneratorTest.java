@@ -2,9 +2,9 @@ package software.craftsmanship.debruijn.combinatorics;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static software.craftsmanship.debruijn.combinatorics.Combination.combination;
-import static software.craftsmanship.debruijn.combinatorics.Combination.empty;
-import static software.craftsmanship.debruijn.combinatorics.CombinationsGenerator.allCombinationsOver;
+import static software.craftsmanship.debruijn.combinatorics.Word.word;
+import static software.craftsmanship.debruijn.combinatorics.Word.empty;
+import static software.craftsmanship.debruijn.combinatorics.WordGenerator.allWordsOver;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,23 +18,23 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class CombinationsGeneratorTest<T> {
+public class WordGeneratorTest<T> {
     private final T[] alphabet;
     private final int length;
     private final Integer expectedCount;
-    private CombinationsGenerator<T> generator;
-    private final Set<Combination<T>> expectedCombinations;
+    private WordGenerator<T> generator;
+    private final Set<Word<T>> expectedWords;
 
-    public CombinationsGeneratorTest(ParametersBuilder<T> builder) {
+    public WordGeneratorTest(ParametersBuilder<T> builder) {
         this.alphabet = builder.alphabet;
         this.length = builder.length;
-        this.expectedCount = builder.combinations.size();
-        this.expectedCombinations = builder.combinations;
+        this.expectedCount = builder.words.size();
+        this.expectedWords = builder.words;
     }
 
     @Before
     public void createGenerator() {
-        this.generator = allCombinationsOver(alphabet).ofLength(length);
+        this.generator = allWordsOver(alphabet).ofLength(length);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class CombinationsGeneratorTest<T> {
 
         generator.each(collector);
 
-        assertEquals(expectedCombinations, collector.combinations());
+        assertEquals(expectedWords, collector.words());
     }
 
     @SuppressWarnings("unchecked")
@@ -65,12 +65,12 @@ public class CombinationsGeneratorTest<T> {
     public static Collection<Object[]> data() {
         ArrayList<Object[]> data = new ArrayList<Object[]>();
         data.add(alphabet("a").length(0).expected(empty(String.class)).build());
-        data.add(alphabet("a").length(1).expected(combination("a")).build());
-        data.add(alphabet("a").length(2).expected(combination("aa")).build());
+        data.add(alphabet("a").length(1).expected(word("a")).build());
+        data.add(alphabet("a").length(2).expected(word("aa")).build());
         data.add(alphabet("a", "b").length(0).expected(empty(String.class)).build());
-        data.add(alphabet("a", "b").length(1).expected(combination("a"), combination("b")).build());
+        data.add(alphabet("a", "b").length(1).expected(word("a"), word("b")).build());
         data.add(alphabet("a", "b").length(2)
-                .expected(combination("aa"), combination("ab"), combination("ba"), combination("bb")).build());
+                .expected(word("aa"), word("ab"), word("ba"), word("bb")).build());
         return data;
     }
 
@@ -83,7 +83,7 @@ class ParametersBuilder<T> {
 
     public final T[] alphabet;
     public int length;
-    public Set<Combination<T>> combinations;
+    public Set<Word<T>> words;
 
     public ParametersBuilder(T[] alphabet) {
         this.alphabet = alphabet;
@@ -94,10 +94,10 @@ class ParametersBuilder<T> {
         return this;
     }
 
-    public ParametersBuilder<T> expected(Combination<T>... combinations) {
-        this.combinations = new HashSet<Combination<T>>();
-        for (Combination<T> combination : combinations) {
-            this.combinations.add(combination);
+    public ParametersBuilder<T> expected(Word<T>... words) {
+        this.words = new HashSet<Word<T>>();
+        for (Word<T> word : words) {
+            this.words.add(word);
         }
         return this;
     }

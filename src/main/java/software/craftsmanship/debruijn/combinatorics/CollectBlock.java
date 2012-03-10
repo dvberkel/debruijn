@@ -3,17 +3,17 @@ package software.craftsmanship.debruijn.combinatorics;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CollectBlock<T> implements CombinationYieldBlock<T> {
+public class CollectBlock<T> implements WordYieldBlock<T> {
 
-    private final Set<Combination<T>> combinations = new HashSet<Combination<T>>();
+    private final Set<Word<T>> words = new HashSet<Word<T>>();
 
     @Override
-    public void yield(Combination<T> combination) {
-        combinations.add(combination);
+    public void yield(Word<T> word) {
+        words.add(word);
     }
 
-    public Set<Combination<T>> combinations() {
-        return this.combinations;
+    public Set<Word<T>> words() {
+        return this.words;
     }
 
 }

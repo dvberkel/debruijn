@@ -5,15 +5,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CombinationsGenerator<T> {
-    public static <T> CombinationsGeneratorBuilder<T> allCombinationsOver(T... alphabet) {
-        return new CombinationsGeneratorBuilder<T>(Arrays.asList(alphabet));
+public class WordGenerator<T> {
+    public static <T> WordGeneratorBuilder<T> allWordsOver(T... alphabet) {
+        return new WordGeneratorBuilder<T>(Arrays.asList(alphabet));
     }
 
     private final List<T> alphabet;
     private final int length;
 
-    public CombinationsGenerator(List<T> alphabet, int length) {
+    public WordGenerator(List<T> alphabet, int length) {
         this.alphabet = copyOf(alphabet);
         this.length = length;
 
@@ -26,22 +26,22 @@ public class CombinationsGenerator<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public void each(CombinationYieldBlock<T> block) {
+    public void each(WordYieldBlock<T> block) {
         // TODO: Implement this so the CombinationsGeneratorTest passes.
-        block.yield((Combination<T>) Combination.empty());
+        block.yield((Word<T>) Word.empty());
 
     }
 }
 
-class CombinationsGeneratorBuilder<T> {
+class WordGeneratorBuilder<T> {
 
     private final List<T> alphabet;
 
-    public CombinationsGeneratorBuilder(List<T> alphabet) {
+    public WordGeneratorBuilder(List<T> alphabet) {
         this.alphabet = alphabet;
     }
 
-    public CombinationsGenerator<T> ofLength(int length) {
-        return new CombinationsGenerator<T>(alphabet, length);
+    public WordGenerator<T> ofLength(int length) {
+        return new WordGenerator<T>(alphabet, length);
     }
 }

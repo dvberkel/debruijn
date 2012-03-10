@@ -1,11 +1,11 @@
 package software.craftsmanship.debruijn.combinatorics;
 
-public class CountBlock<T> implements CombinationYieldBlock<T> {
+public class CountBlock<T> implements WordYieldBlock<T> {
 
     private int count = 0;
 
     @Override
-    public void yield(Combination<T> combination) {
+    public void yield(Word<T> word) {
         count++;
     }
 
