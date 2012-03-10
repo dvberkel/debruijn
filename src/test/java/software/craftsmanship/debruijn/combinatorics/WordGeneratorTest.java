@@ -2,8 +2,8 @@ package software.craftsmanship.debruijn.combinatorics;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static software.craftsmanship.debruijn.combinatorics.Word.word;
 import static software.craftsmanship.debruijn.combinatorics.Word.empty;
+import static software.craftsmanship.debruijn.combinatorics.Word.word;
 import static software.craftsmanship.debruijn.combinatorics.WordGenerator.allWordsOver;
 
 import java.util.ArrayList;
@@ -66,11 +66,11 @@ public class WordGeneratorTest<T> {
         ArrayList<Object[]> data = new ArrayList<Object[]>();
         data.add(alphabet("a").length(0).expected(empty(String.class)).build());
         data.add(alphabet("a").length(1).expected(word("a")).build());
-        data.add(alphabet("a").length(2).expected(word("aa")).build());
+        data.add(alphabet("a").length(2).expected(word("a", "a")).build());
         data.add(alphabet("a", "b").length(0).expected(empty(String.class)).build());
         data.add(alphabet("a", "b").length(1).expected(word("a"), word("b")).build());
-        data.add(alphabet("a", "b").length(2)
-                .expected(word("aa"), word("ab"), word("ba"), word("bb")).build());
+        data.add(alphabet("a", "b").length(2).expected(word("a", "a"), word("a", "b"), word("b", "a"), word("b", "b"))
+                .build());
         return data;
     }
 
