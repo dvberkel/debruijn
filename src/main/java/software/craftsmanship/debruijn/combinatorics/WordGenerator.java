@@ -13,7 +13,7 @@ public class WordGenerator<T> {
     private final List<T> alphabet;
     private final int length;
 
-    public WordGenerator(List<T> alphabet, int length) {
+    private WordGenerator(List<T> alphabet, int length) {
         this.alphabet = copyOf(alphabet);
         this.length = length;
 
@@ -31,17 +31,17 @@ public class WordGenerator<T> {
         block.yield((Word<T>) Word.empty());
 
     }
-}
 
-class WordGeneratorBuilder<T> {
+    static class WordGeneratorBuilder<T> {
 
-    private final List<T> alphabet;
+        private final List<T> alphabet;
 
-    public WordGeneratorBuilder(List<T> alphabet) {
-        this.alphabet = alphabet;
-    }
+        public WordGeneratorBuilder(List<T> alphabet) {
+            this.alphabet = alphabet;
+        }
 
-    public WordGenerator<T> ofLength(int length) {
-        return new WordGenerator<T>(alphabet, length);
+        public WordGenerator<T> ofLength(int length) {
+            return new WordGenerator<T>(alphabet, length);
+        }
     }
 }
