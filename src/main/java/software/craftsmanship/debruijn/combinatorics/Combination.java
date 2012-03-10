@@ -21,13 +21,26 @@ public class Combination<T> {
     private final List<T> elements;
 
     private Combination(List<T> elements) {
-        this.elements = copyOf(elements);
+        this.elements = Collections.unmodifiableList(copyOf(elements));
     }
 
     private List<T> copyOf(List<T> elements) {
-        ArrayList<T> copy = new ArrayList<T>();
+        List<T> copy = new ArrayList<T>();
         copy.addAll(elements);
-        return Collections.unmodifiableList(copy);
+        return copy;
+    }
+
+    public Combination<T> append(T letter) {
+        List<T> copy = copyOf(elements);
+        copy.add(letter);
+        return new Combination<T>(copy);
+    }
+
+    public Combination<T> pipe(T letter) {
+        List<T> copy = copyOf(elements);
+        copy.remove(0);
+        copy.add(letter);
+        return new Combination<T>(copy);
     }
 
     @Override
