@@ -1,6 +1,8 @@
 package software.craftsmanship.debruijn.cycles;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import software.craftsmanship.debruijn.combinatorics.Word;
@@ -16,19 +18,37 @@ public class Cycle<T> {
         return new CycleBuilder<U>(collector.edges());
     }
 
-    private Cycle(Set<Edge<T>> edges, Word<T> start) {
-        // TODO Auto-generated constructor stub
+    private static <U> Set<Edge<U>> copyOf(Set<Edge<U>> aSet) {
+        Set<Edge<U>> copy = new HashSet<Edge<U>>();
+        copy.addAll(aSet);
+        return copy;
     }
 
-    public void allEdges(EdgeYieldBlock<T> edgeYieldBlock) {}
+    private final List<Edge<T>> cycle = new ArrayList<Edge<T>>();
+    private final Set<Edge<T>> edges;
+    private final Word<T> start;
+
+    private Cycle(Set<Edge<T>> edges, Word<T> start) {
+        this.edges = copyOf(edges);
+        this.start = start;
+        findACycleAmongEdgesFromStart();
+    }
+
+    private void findACycleAmongEdgesFromStart() {
+        // TODO: implement this to make the CycleTest pass.
+    }
+
+    public void allEdges(EdgeYieldBlock<T> block) {
+        for (Edge<T> edge : cycle) {
+            block.yield(edge);
+        }
+    }
 
     public static class CycleBuilder<T> {
         private final Set<Edge<T>> edges;
 
         public CycleBuilder(Set<Edge<T>> edgesOfGraph) {
-            Set<Edge<T>> edges = new HashSet<Edge<T>>();
-            edges.addAll(edgesOfGraph);
-            this.edges = edges;
+            this.edges = copyOf(edgesOfGraph);
         }
 
         public CycleBuilder<T> avoiding(Cycle<T> cycle) {
