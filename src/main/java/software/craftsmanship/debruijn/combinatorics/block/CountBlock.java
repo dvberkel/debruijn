@@ -1,4 +1,6 @@
-package software.craftsmanship.debruijn.combinatorics;
+package software.craftsmanship.debruijn.combinatorics.block;
+
+import software.craftsmanship.debruijn.combinatorics.Word;
 
 public class CountBlock<T> implements WordYieldBlock<T> {
 

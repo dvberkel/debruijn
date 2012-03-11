@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import software.craftsmanship.debruijn.combinatorics.block.WordYieldBlock;
+
 public class WordGenerator<T> {
     public static <T> WordGeneratorBuilder<T> allWordsOver(T... alphabet) {
         return new WordGeneratorBuilder<T>(Arrays.asList(alphabet));

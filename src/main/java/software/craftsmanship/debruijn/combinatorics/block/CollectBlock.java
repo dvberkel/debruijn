@@ -1,7 +1,9 @@
-package software.craftsmanship.debruijn.combinatorics;
+package software.craftsmanship.debruijn.combinatorics.block;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import software.craftsmanship.debruijn.combinatorics.Word;
 
 public class CollectBlock<T> implements WordYieldBlock<T> {
 

@@ -17,6 +17,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import software.craftsmanship.debruijn.combinatorics.block.CollectBlock;
+import software.craftsmanship.debruijn.combinatorics.block.CountBlock;
+
 @RunWith(Parameterized.class)
 public class WordGeneratorTest<T> {
     private final T[] alphabet;
