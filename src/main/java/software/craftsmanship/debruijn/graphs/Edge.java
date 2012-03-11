@@ -5,10 +5,19 @@ import software.craftsmanship.debruijn.combinatorics.Word;
 public class Edge<T> {
     private final Word<T> source;
     private final Word<T> sink;
+    private T label;
 
     public Edge(Word<T> source, Word<T> sink) {
         this.source = source;
         this.sink = sink;
+    }
+
+    public void label(T label) {
+        this.label = label;
+    }
+
+    public T label() {
+        return label;
     }
 
     public Word<T> source() {

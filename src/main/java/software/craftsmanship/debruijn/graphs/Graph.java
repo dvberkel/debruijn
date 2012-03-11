@@ -25,8 +25,8 @@ public class Graph<T> {
         return new EdgeBuilder<T>(this, source);
     }
 
-    private void addEdge(Word<T> source, Word<T> sink) {
-        edges.add(new Edge<T>(source, sink));
+    private void addEdge(Edge<T> edge) {
+        edges.add(edge);
     }
 
     public void allEdges(EdgeYieldBlock<T> block) {
@@ -35,7 +35,7 @@ public class Graph<T> {
         }
     }
 
-    class EdgeBuilder<U> {
+    public class EdgeBuilder<U> {
         private final Graph<U> graph;
         private final Word<U> source;
 
@@ -44,8 +44,10 @@ public class Graph<T> {
             this.source = source;
         }
 
-        public void to(Word<U> sink) {
-            graph.addEdge(source, sink);
+        public Edge<U> to(Word<U> sink) {
+            Edge<U> edge = new Edge<U>(source, sink);
+            graph.addEdge(edge);
+            return edge;
         }
 
     }
