@@ -45,7 +45,19 @@ public class CycleMergeTest {
 	cycle.allEdges(collector);
 	
 	assertEquals(expectedWord, collector.word());
+    }
+    
+    @Test
+    public void shouldCorrectlyMergeAButterFly() {
+	Cycle<String> aCycle = cycleOver(cyclicGraph("a", "b", "c")).startingAt(word("a"));
+	Cycle<String> butterfly = cycleOver(cyclicGraph("b", "e", "f")).startingAt(word("b")).merge(cycleOver(cyclicGraph("b", "c", "d")).startingAt(word("b")));
+	Cycle<String> cycle = aCycle.merge(butterfly);
 	
+	LabelCollector<String> collector = new LabelCollector<String>();
+	
+	cycle.allEdges(collector);
+	
+	assertEquals(word("a", "b", "c", "d", "b", "e", "f", "b", "c"), collector.word());
     }
     
     @Parameters
