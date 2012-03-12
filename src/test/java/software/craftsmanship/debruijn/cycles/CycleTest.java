@@ -90,7 +90,7 @@ public class CycleTest<T> {
         for (int index = 0; index < letters.length - 1; index++) {
             Word<T> source = word(letters[index]);
             Word<T> sink = word(letters[index + 1]);
-            graph.addEdgeFrom(sink).to(source).label(letters[index]);
+            graph.addEdgeFrom(source).to(sink).label(letters[index]);
         }
         T lastLetter = letters[letters.length - 1];
         graph.addEdgeFrom(word(lastLetter)).to(word(letters[0])).label(lastLetter);
