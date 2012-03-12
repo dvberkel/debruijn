@@ -39,18 +39,44 @@ public class Edge<T> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+	    return true;
+	}
+        if (obj == null) {
+	    return false;
+	}
+        if (getClass() != obj.getClass()) {
+	    return false;
+	}
         @SuppressWarnings("rawtypes")
         Edge other = (Edge) obj;
         if (sink == null) {
-            if (other.sink != null) return false;
-        } else if (!sink.equals(other.sink)) return false;
+            if (other.sink != null) {
+		return false;
+	    }
+        } else if (!sink.equals(other.sink)) {
+	    return false;
+	}
         if (source == null) {
-            if (other.source != null) return false;
-        } else if (!source.equals(other.source)) return false;
+            if (other.source != null) {
+		return false;
+	    }
+        } else if (!source.equals(other.source)) {
+	    return false;
+	}
         return true;
     }
 
+    @Override
+    public String toString() {
+	StringBuilder builder = new StringBuilder();
+	builder.append("{ ");
+	builder.append(source);
+	builder.append(" -> ");
+	builder.append(sink);
+	builder.append(" ; ");
+	builder.append(label);
+	builder.append(" }");
+	return builder.toString();
+    }
 }
