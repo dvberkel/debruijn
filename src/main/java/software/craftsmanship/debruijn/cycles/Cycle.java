@@ -83,23 +83,9 @@ public class Cycle<T> {
     }
     
     public Cycle<T> merge(final Cycle<T> otherCycle) {
-	final List<Edge<T>> edges = new ArrayList<Edge<T>>();
-	this.allEdges(new EdgeYieldBlock<T>(){
-
-	    @Override
-	    public void yield(Edge<T> edge) {
-		if (edge.source().equals(otherCycle.start)) {
-		    otherCycle.allEdges(new EdgeYieldBlock<T>(){
-
-			@Override
-			public void yield(Edge<T> edge) {
-			    edges.add(edge);
-			}
-		    });
-		}
-		edges.add(edge);
-	    }});
-	return new Cycle<T>(edges);
+	CycleMergeCollectBlock<T> collector = new CycleMergeCollectBlock<T>(otherCycle);
+	this.allEdges(collector);
+	return new Cycle<T>(collector.edges);
     }
     
     public int size() {
@@ -131,4 +117,33 @@ public class Cycle<T> {
         }
 
     }
+    class CycleMergeCollectBlock<U> implements EdgeYieldBlock<U> {
+	final List<Edge<U>> edges = new ArrayList<Edge<U>>();
+	private final Cycle<U> otherCycle;
+	private boolean firstTime = true;
+	
+	public CycleMergeCollectBlock(Cycle<U> otherCycle) {
+	    this.otherCycle = otherCycle;
+	}
+	
+	@Override
+	public void yield(Edge<U> edge) {
+	    if (firstTime && edge.source().equals(otherCycle.start)) {
+		firstTime = false;
+		otherCycle.allEdges(new EdgeYieldBlock<U>(){
+		    
+		    @Override
+		    public void yield(Edge<U> edge) {
+			edges.add(edge);
+		    }
+		});
+	    }
+	    edges.add(edge);
+	}
+	
+	public List<Edge<U>> edges() {
+	    return edges;
+	}
+    }
 }
+
