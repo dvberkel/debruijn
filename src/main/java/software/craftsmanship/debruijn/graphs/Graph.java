@@ -34,6 +34,10 @@ public class Graph<T> {
             block.yield(edge);
         }
     }
+    
+    public int numberOfEdges() {
+	return edges.size();
+    }
 
     public class EdgeBuilder<U> {
         private final Graph<U> graph;

@@ -1,7 +1,6 @@
 package software.craftsmanship.debruijn.cycles;
 
 import static org.junit.Assert.assertEquals;
-import static software.craftsmanship.debruijn.combinatorics.Word.empty;
 import static software.craftsmanship.debruijn.combinatorics.Word.word;
 import static software.craftsmanship.debruijn.cycles.Cycle.cycleOver;
 import static software.craftsmanship.debruijn.cycles.util.GraphFactory.bulgeGraph;
@@ -23,7 +22,7 @@ import org.junit.runners.Parameterized.Parameters;
 import software.craftsmanship.debruijn.combinatorics.Word;
 import software.craftsmanship.debruijn.graphs.Edge;
 import software.craftsmanship.debruijn.graphs.Graph;
-import software.craftsmanship.debruijn.graphs.block.EdgeYieldBlock;
+import software.craftsmanship.debruijn.graphs.block.LabelCollector;
 
 @RunWith(Parameterized.class)
 public class CycleTest<T> {
@@ -42,7 +41,7 @@ public class CycleTest<T> {
     @Test
     public void shouldCreateACorrectCylceOverAGraph() {
         Cycle<T> cycle = cycleOver(graph).startingAt(start);
-        CycleWordCollector<T> collector = new CycleWordCollector<T>();
+        LabelCollector<T> collector = new LabelCollector<T>();
 
         cycle.allEdges(collector);
 
@@ -52,7 +51,7 @@ public class CycleTest<T> {
     @Test
     public void shouldCreateACorrectCylceOverAGraphAvoidingEdges() {
         Cycle<T> cycle = cycleOver(graph).avoiding(avoidedEdges).startingAt(start);
-        CycleWordCollector<T> collector = new CycleWordCollector<T>();
+        LabelCollector<T> collector = new LabelCollector<T>();
 
         cycle.allEdges(collector);
 
@@ -73,19 +72,4 @@ public class CycleTest<T> {
         data.add(new Object[]{bulgeGraph("a", "b", "c", "d"), word("a"), word("a", "b", "c", "d"), loop("a")});
         return data;
     }
-}
-
-class CycleWordCollector<T> implements EdgeYieldBlock<T> {
-
-    private Word<T> word = empty();
-
-    @Override
-    public void yield(Edge<T> edge) {
-        word = word.append(edge.label());
-    }
-
-    public Word<T> word() {
-        return word;
-    }
-
 }

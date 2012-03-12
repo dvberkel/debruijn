@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import software.craftsmanship.debruijn.combinatorics.block.WordYieldBlock;
+
 public class Word<T> {
     public static <U> Word<U> word(U... letters) {
         return new Word<U>(Arrays.asList(letters));
@@ -42,6 +44,14 @@ public class Word<T> {
         copy.add(letter);
         return new Word<T>(copy);
     }
+    
+    public void subwords(int ofSize, WordYieldBlock<T> block) {
+	List<T> copy = copyOf(letters);
+	copy.addAll(letters);
+	for (int index = 0; index < letters.size(); index++) {
+	    block.yield(new Word<T>(copy.subList(index, index + ofSize + 1)));
+	}
+    }
 
     @Override
     public int hashCode() {
@@ -53,14 +63,24 @@ public class Word<T> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+	    return true;
+	}
+        if (obj == null) {
+	    return false;
+	}
+        if (getClass() != obj.getClass()) {
+	    return false;
+	}
         @SuppressWarnings("rawtypes")
         Word other = (Word) obj;
         if (letters == null) {
-            if (other.letters != null) return false;
-        } else if (!letters.equals(other.letters)) return false;
+            if (other.letters != null) {
+		return false;
+	    }
+        } else if (!letters.equals(other.letters)) {
+	    return false;
+	}
         return true;
     }
 

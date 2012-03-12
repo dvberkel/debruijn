@@ -28,19 +28,22 @@ public class Cycle<T> {
     }
 
     private final List<Edge<T>> cycle = new ArrayList<Edge<T>>();
-    private final Set<Edge<T>> edges;
-    private final Word<T> start;
+    private final Set<Edge<T>> edges = new HashSet<Edge<T>>();
+    private Word<T> start;
 
     private Cycle(Set<Edge<T>> edges, Word<T> start) {
-        this.edges = copyOf(edges);
+        this.edges.addAll(edges);
         this.start = start;
         findACycleAmongEdgesFromStart();
     }
 
     private Cycle(List<Edge<T>> edges) {
 	this.cycle.addAll(edges);
-	this.edges = Collections.emptySet();
 	this.start = this.cycle.get(0).source();
+    }
+    
+    protected Cycle() {
+	// Constructor for the sole purpose of the EmptyCycle.
     }
 
     private void findACycleAmongEdgesFromStart() {
@@ -56,6 +59,10 @@ public class Cycle<T> {
     public Cycle<T> merge(Cycle<T> otherCycle) {
 	// TODO: implement this to make the CycleMergeTest pass.
 	return new Cycle<T>(Collections.singletonList(new Edge<T>((Word<T>)empty(), (Word<T>)empty())));
+    }
+    
+    public int size() {
+	return cycle.size();
     }
 
     public static class CycleBuilder<T> {

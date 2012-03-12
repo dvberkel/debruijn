@@ -16,6 +16,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import software.craftsmanship.debruijn.combinatorics.Word;
+import software.craftsmanship.debruijn.graphs.block.LabelCollector;
 
 @RunWith(Parameterized.class)
 public class CycleMergeTest {
@@ -39,7 +40,7 @@ public class CycleMergeTest {
     
     @Test
     public void shouldCorrectlyMergeTwoCycles() {
-	CycleWordCollector<String> collector = new CycleWordCollector<String>();
+	LabelCollector<String> collector = new LabelCollector<String>();
 	
 	cycle.allEdges(collector);
 	
