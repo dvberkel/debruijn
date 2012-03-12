@@ -47,7 +47,35 @@ public class Cycle<T> {
     }
 
     private void findACycleAmongEdgesFromStart() {
-        // TODO: implement this to make the CycleTest pass.
+        List<Edge<T>> path = findAPathAmongEdges(start, start, copyOf(edges));
+        if (path != null) {
+            Collections.reverse(path);
+            cycle.addAll(path);
+        } else {
+            throw new RuntimeException("No cycle found");
+        }
+     
+    }
+
+    private List<Edge<T>> findAPathAmongEdges(Word<T> origin, Word<T> destination, Set<Edge<T>> available) {
+	for (Edge<T> edge : available) {
+	    if (edge.source().equals(origin)) {
+		if (edge.sink().equals(destination)) {
+		    ArrayList<Edge<T>> path = new ArrayList<Edge<T>>();
+		    path.add(edge);
+		    return path;
+		} else {
+		    Set<Edge<T>> copy = copyOf(available);
+		    copy.remove(edge);
+		    List<Edge<T>> path = findAPathAmongEdges(edge.sink(), destination, copy);
+		    if (path != null) {
+			path.add(edge);
+			return path;
+		    }
+		}
+	    }
+	}
+	return null;
     }
 
     public void allEdges(EdgeYieldBlock<T> block) {
