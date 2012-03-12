@@ -19,9 +19,17 @@
 	    element.html(view.template({
 		value: view.model.get(view.options.variable)
 	    }));
-	    element.children("input").blur(function(){
+	    var control = function(){
 		element.children().toggle();
 		view.model.set(view.options.variable, parseInt(this.value));
+	    };
+	    element.children("input").blur(function(){
+		    control.call(this);
+	    }).keypress(function(e){
+		var c = e.which ? e.which : e.keyCode;
+		if (c == 13) {
+		    control.call(this);
+		}
 	    }).hide();
 	    element.children("span").click(function(){
 		element.children().toggle();
