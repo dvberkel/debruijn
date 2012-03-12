@@ -32,24 +32,24 @@ public class DeBruijn<T> {
     }
 
     public Word<T> sequence(int k, int n) {
-	Graph<T> graph = deBruijnGraph(k, n);
+	Graph<T> graph = deBruijnGraph(k, n - 1);
 	Cycle<T> cycle = eulerCycle(graph);
 	LabelCollector<T> collector = new LabelCollector<T>();
 	cycle.allEdges(collector);
 	return collector.word();
     }
 
-    private Graph<T> deBruijnGraph(int k, int n) {
+    private Graph<T> deBruijnGraph(int k, int m) {
 	Graph<T> graph = new Graph<T>();
 	List<T> currentAlphabet = alphabet.subList(0, k);
-	addVertices(n, graph, currentAlphabet);
+	addVertices(m, graph, currentAlphabet);
 	addEdged(graph, currentAlphabet);
 	return graph;
     }
 
     @SuppressWarnings("unchecked")
-    private void addVertices(int n, final Graph<T> graph, final List<T> currentAlphabet) {
-	allWordsOver((T[])currentAlphabet.toArray()).ofLength(n).each(new WordYieldBlock<T>() {
+    private void addVertices(int m, final Graph<T> graph, final List<T> currentAlphabet) {
+	allWordsOver((T[])currentAlphabet.toArray()).ofLength(m).each(new WordYieldBlock<T>() {
 	    @Override
 	    public void yield(Word<T> word) {
 		graph.addVertex(word);

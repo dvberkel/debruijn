@@ -32,10 +32,7 @@ public class DeBruijnTest {
     @Parameters
     public static Collection<Object[]> data() {
 	List<Object[]> data = new ArrayList<Object[]>();
-	data.add(new Object[]{1, 1});
-	data.add(new Object[]{2, 1});
 	data.add(new Object[]{2, 2});
-	data.add(new Object[]{3, 1});
 	data.add(new Object[]{3, 2});
 	data.add(new Object[]{3, 3});
 	return data;

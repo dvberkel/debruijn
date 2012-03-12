@@ -4,6 +4,6 @@ public class EmptyCycle<T> extends Cycle<T> {
 
     @Override
     public Cycle<T> merge(Cycle<T> otherCycle) {
-    	return this;
+    	return otherCycle;
     }
 }
