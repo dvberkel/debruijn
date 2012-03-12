@@ -28,10 +28,21 @@ public class WordGenerator<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public void each(WordYieldBlock<T> block) {
-        // TODO: Implement this so the CombinationsGeneratorTest passes.
-        block.yield((Word<T>) Word.empty());
+    public void each(final WordYieldBlock<T> block) {
+	if (length == 0) {
+	    block.yield((Word<T>) Word.empty());
+	} else {
+	    new WordGenerator<T>(alphabet, length - 1).each(new WordYieldBlock<T>() {
 
+		@Override
+		public void yield(Word<T> word) {
+		    for (T letter : alphabet) {
+			block.yield(word.append(letter));
+		    }
+		    
+		}
+	    });
+	}
     }
 
     public static class WordGeneratorBuilder<T> {
