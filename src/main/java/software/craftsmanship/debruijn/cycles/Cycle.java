@@ -1,6 +1,9 @@
 package software.craftsmanship.debruijn.cycles;
 
+import static software.craftsmanship.debruijn.combinatorics.Word.empty;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,6 +37,12 @@ public class Cycle<T> {
         findACycleAmongEdgesFromStart();
     }
 
+    private Cycle(List<Edge<T>> edges) {
+	this.cycle.addAll(edges);
+	this.edges = Collections.emptySet();
+	this.start = this.cycle.get(0).source();
+    }
+
     private void findACycleAmongEdgesFromStart() {
         // TODO: implement this to make the CycleTest pass.
     }
@@ -42,6 +51,11 @@ public class Cycle<T> {
         for (Edge<T> edge : cycle) {
             block.yield(edge);
         }
+    }
+    
+    public Cycle<T> merge(Cycle<T> otherCycle) {
+	// TODO: implement this to make the CycleMergeTest pass.
+	return new Cycle<T>(Collections.singletonList(new Edge<T>((Word<T>)empty(), (Word<T>)empty())));
     }
 
     public static class CycleBuilder<T> {
