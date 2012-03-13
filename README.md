@@ -1,6 +1,8 @@
 Java with Maven De Bruijn Sequences
 ===================================
 
+[![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=java-maven-finished)](http://travis-ci.org/dvberkel/debruijn)
+
 This branch is a compendium to the De Bruijn project. It provides
 support code which a participate can use to start-off implementing De
 Bruijn sequences.
