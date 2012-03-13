@@ -1,7 +1,7 @@
-Java with Maven De Bruijn Sequences
+Java with Ant De Bruijn Sequences
 ===================================
 
-[![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=java-maven-finished)](http://travis-ci.org/dvberkel/debruijn)
+[![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=java-ant-finished)](http://travis-ci.org/dvberkel/debruijn)
 
 This branch is a compendium to the De Bruijn project. It provides
 support code which a participate can use to start-off implementing De
@@ -21,27 +21,20 @@ Your mission, should you chose to accept it, is to make all the test pass.
 Environment
 -----------
 
-[Maven](http://maven.apache.org/ "Homepage of Maven") is used to
+[Ant](http://ant.apache.org/ "Homepage of Ant") is used to
 automate our build.
 
-> Apache Maven is a software project management and comprehension
-> tool. Based on the concept of a project object model (POM), Maven
-> can manage a project's build, reporting and documentation from a
-> central piece of information.
+>Apache Ant is a Java library and command-line tool whose mission is
+> to drive processes described in build files as targets and extension
+> points dependent upon each other. The main known usage of Ant is the
+> build of Java applications. Ant supplies a number of built-in tasks
+> allowing to compile, assemble, test and run Java applications.
 
-The [documentation](http://maven.apache.org/users/index.html "Information how to setup Maven")
-page lists information how to setup Maven.
-
-### Eclipse
-
-The following command generate an eclipse project definition.
-
-    > mvn eclipse:eclipse
-
-This allows a participant to import the project into eclipse.
+The [documentation](http://ant.apache.org/manual/index.html "Information how to setup Ant")
+page lists information how to setup Ant.
 
 ### Running Test
 
-    > mvn test
+    > ant test
 
 The command above runs all the tests.
