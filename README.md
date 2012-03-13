@@ -17,6 +17,14 @@ This project will serve the following goals. Make sure to checkout the
 If you want to see where I am currently working on, visit the
 [Trello Board](https://trello.com/board/debruijn/4f4f58f89763e9d6727febff "Trello board for De Bruijn Sequences")
 
+Status
+------
+
+Below are build status badge for the various finished starter projects.
+
+* [![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=java-maven-finished)](http://travis-ci.org/dvberkel/debruijn) [Java](https://github.com/dvberkel/debruijn/tree/java-maven "Java + Maven starter Project") + maven
+
+
 Software Craftsmanship Conference
 ---------------------------------
 
