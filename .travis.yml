@@ -1,0 +1,3 @@
+branches:
+  only:
+    - java-maven-finished
