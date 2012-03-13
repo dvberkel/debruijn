@@ -1,5 +1,6 @@
 branches:
   only:
     - java-maven-finished
+    - java-ant-finished
 
 language: java
