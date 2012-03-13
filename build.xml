@@ -1,4 +1,4 @@
-<project name="debruijn" default="test-compile" basedir=".">
+<project name="debruijn" default="test" basedir=".">
   <description>
     Automate the build of the debruijn starter project.
   </description>
@@ -16,6 +16,7 @@
       <include name="hamcrest-core-1.1.jar"/>
     </fileset>
     <pathelement path="${build}/${classes}"/>
+    <pathelement path="${build}/${test-classes}"/>
   </path>
 
   <target name="init">
@@ -34,7 +35,20 @@
       <classpath refid="test-classpath"/>
     </javac>
   </target>
-    
+
+
+  <target name="test" depends="test-compile">
+    <junit printsummary="true" failureproperty="junit.failure">
+      <classpath refid="test-classpath" />
+      <batchtest>
+	<fileset dir="${test-src}">
+	  <include name="**/*Test*.java"/>
+	</fileset>
+      </batchtest>
+    </junit>
+    <fail if="junit.failure" message="There are failing tests"/>
+  </target>
+  
   <target name="clean" description="clean up" >
     <delete dir="${build}"/>
   </target>
