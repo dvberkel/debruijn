@@ -35,6 +35,10 @@ public class Graph<T> {
         }
     }
 
+    public int numberOfEdges() {
+        return edges.size();
+    }
+
     public class EdgeBuilder<U> {
         private final Graph<U> graph;
         private final Word<U> source;

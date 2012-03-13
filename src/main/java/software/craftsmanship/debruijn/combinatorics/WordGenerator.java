@@ -34,7 +34,7 @@ public class WordGenerator<T> {
 
     }
 
-    static class WordGeneratorBuilder<T> {
+    public static class WordGeneratorBuilder<T> {
 
         private final List<T> alphabet;
 

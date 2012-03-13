@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import software.craftsmanship.debruijn.combinatorics.block.WordYieldBlock;
+
 public class Word<T> {
     public static <U> Word<U> word(U... letters) {
         return new Word<U>(Arrays.asList(letters));
@@ -41,6 +43,14 @@ public class Word<T> {
         copy.remove(0);
         copy.add(letter);
         return new Word<T>(copy);
+    }
+
+    public void subwords(int ofSize, WordYieldBlock<T> block) {
+        List<T> copy = copyOf(letters);
+        copy.addAll(letters);
+        for (int index = 0; index < letters.size(); index++) {
+            block.yield(new Word<T>(copy.subList(index, index + ofSize + 1)));
+        }
     }
 
     @Override
