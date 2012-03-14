@@ -23,6 +23,7 @@ Status
 Below are build status badge for the various finished starter projects.
 
 * [![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=java-maven-finished)](http://travis-ci.org/dvberkel/debruijn) [Java](https://github.com/dvberkel/debruijn/tree/java-maven "Java + Maven starter Project") + maven
+* [![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=java-ant-finished)](http://travis-ci.org/dvberkel/debruijn) [Java](https://github.com/dvberkel/debruijn/tree/java-ant "Java + Ant starter Project") + ant
 
 
 Software Craftsmanship Conference
