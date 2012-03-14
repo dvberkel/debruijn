@@ -48,3 +48,9 @@ Bundler can be installed with the following command.
 To install all the dependencies issue the following command
 
     > bundle install
+
+### Running Tests
+
+    > bundle exec rake
+
+Will run all the tests in the project.
