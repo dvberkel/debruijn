@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["daan.v.berkel.1980@gmail.com"]
   gem.description   = %q{The debruijn gem provides a means to generate De Bruijn sequences.}
   gem.summary       = %q{De Bruijn sequence generator.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/dvberkel/debruijn"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
