@@ -5,9 +5,13 @@ class Word
   end
 
   def append(letter)
-    result = Array.new(@letters)
-    result << letter
-    return Word.new(result)
+    return Word.new(Array.new(@letters) << letter)
+  end
+
+  def pipe(letter)
+    result = Array.new(@letters).push(letter)
+    result.shift
+    Word.new(result)
   end
 
   def ==(word) 
