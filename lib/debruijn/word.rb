@@ -21,4 +21,8 @@ class Word
   def hash
     self.letters.hash
   end
+
+  def to_s
+    "(#{@letters.join(', ')})"
+  end
 end

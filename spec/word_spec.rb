@@ -1,11 +1,27 @@
 require "word"
 
 describe "word" do
-  it "should correctly append a letter" do
-    word = Word.new("a")
-
-    actual = word.append("b")
-
-    actual.should == Word.new("a", "b")
+  [
+   [Word.new(), "a", Word.new("a")], 
+   [Word.new(), "b", Word.new("b")], 
+   [Word.new("a"), "a", Word.new("a", "a")], 
+   [Word.new("a"), "b", Word.new("a", "b")],
+   [Word.new("b"), "a", Word.new("b", "a")], 
+   [Word.new("b"), "b", Word.new("b", "b")],
+   [Word.new("a", "a"), "a", Word.new("a", "a", "a")],
+   [Word.new("a", "a"), "b", Word.new("a", "a", "b")],
+   [Word.new("a", "b"), "a", Word.new("a", "b", "a")],
+   [Word.new("a", "b"), "b", Word.new("a", "b", "b")],
+   [Word.new("b", "a"), "a", Word.new("b", "a", "a")],
+   [Word.new("b", "a"), "b", Word.new("b", "a", "b")],
+   [Word.new("b", "b"), "a", Word.new("b", "b", "a")],
+   [Word.new("b", "b"), "b", Word.new("b", "b", "b")],
+  ].each do |triple|
+    word, letter, expected = triple
+    it "#{word}.append(#{letter}) should == #{expected}" do      
+      actual = word.append(letter)
+      
+      actual.should == expected
+    end
   end
 end
