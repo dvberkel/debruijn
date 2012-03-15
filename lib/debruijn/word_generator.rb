@@ -8,6 +8,14 @@ class Words
   end
 
   def of_length(n, &block)
-    block.call(Word.new())
+    if (n == 0) then
+      block.call(Word.new())
+    else
+      Words.over(@alphabet).of_length(n - 1) do |word|
+        @alphabet.each { |letter|
+          block.call(word.append(letter))
+        }
+      end
+    end
   end
 end
