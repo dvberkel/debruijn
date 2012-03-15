@@ -22,13 +22,13 @@ describe "Words" do
   end
   
   [
-   [["a"], 0, [Word.new()].to_set]
-   [["a"], 1, [Word.new("a")].to_set]
-   [["a"], 2, [Word.new("a", "a")].to_set]
-   [["a"], 3, [Word.new("a", "a", "a")].to_set]
-   [["a", "b"], 0, [Word.new()].to_set]
-   [["a", "b"], 1, [Word.new("a"), Word.new("b")].to_set]
-   [["a", "b"], 2, [Word.new("a", "a"), Word.new("a", "b"), Word.new("b", "a"), Word.new("b", "b")].to_set]
+   [["a"], 0, [Word.new()].to_set],
+   [["a"], 1, [Word.new("a")].to_set],
+   [["a"], 2, [Word.new("a", "a")].to_set],
+   [["a"], 3, [Word.new("a", "a", "a")].to_set],
+   [["a", "b"], 0, [Word.new()].to_set],
+   [["a", "b"], 1, [Word.new("a"), Word.new("b")].to_set],
+   [["a", "b"], 2, [Word.new("a", "a"), Word.new("a", "b"), Word.new("b", "a"), Word.new("b", "b")].to_set],
   ].each do |fixture|
     alphabet = fixture[0]
     length = fixture[1]
