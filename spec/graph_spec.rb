@@ -13,6 +13,14 @@ describe "graph" do
         
         count.should == alphabet.length
       end
+
+      it "should be able to add #{alphabet.length} correct vertices" do
+        collector, graph = [], createGraph(alphabet)
+        
+        graph.allVertices { |vertex| collector << vertex}
+        
+        collector.to_set.should == (alphabet.map {|letter| Word.new(letter)} ).to_set
+      end
     end
   end
 
