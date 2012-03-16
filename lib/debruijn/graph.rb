@@ -19,7 +19,9 @@ class Graph
   end
 
   def addEdge(source, sink)
-    @edges << Edge.new(source, sink)
+    edge = Edge.new(source, sink)
+    @edges << edge
+    edge
   end
 
   def allEdges
@@ -31,9 +33,11 @@ end
 
 class Edge
   attr_reader :source, :sink
+  attr_accessor :label
   def initialize(source, sink)
     @source = source
     @sink = sink
+    @label = nil
   end
 
   def ==(edge)
@@ -57,6 +61,5 @@ class EdgeAdder
 
   def to(sink)
     @graph.addEdge(@source, sink)
-    self
   end
 end

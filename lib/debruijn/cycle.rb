@@ -4,8 +4,19 @@ class Cycle
   end
 
   def initialize(edges, start)
+    @cycle = []
     @edges = edges
     @start = start
+    find_cycle_among_edge_from_start
+  end
+
+  def find_cycle_among_edge_from_start
+  end
+  
+  def allEdges
+    @cycle.each { |edge|
+      yield edge
+    }
   end
 end
 
