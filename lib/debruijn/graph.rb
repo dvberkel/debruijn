@@ -30,9 +30,22 @@ class Graph
 end
 
 class Edge
+  attr_reader :source, :sink
   def initialize(source, sink)
     @source = source
     @sink = sink
+  end
+
+  def ==(edge)
+    self.eql?(edge)
+  end
+  
+  def eql?(edge)
+    self.class.eql?(edge.class) && self.source.eql?(edge.source) && self.sink.eql?(edge.sink)
+  end
+  
+  def hash()
+    @source.hash ^ @sink.hash
   end
 end
 

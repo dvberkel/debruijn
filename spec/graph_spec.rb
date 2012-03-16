@@ -41,6 +41,14 @@ describe "graph" do
 
         count.should == edges.length
       end
+      
+      it "should be able to add #{edges.length} correct edges" do
+        collector, graph = [], createGraph(alphabet, edges)
+
+        graph.allEdges { |edge| collector << edge}
+
+        collector.to_set.should == (edges.map {|edge| Edge.new(Word.new(edge[0]), Word.new(edge[1]))}).to_set
+      end
     end
   end
 end
