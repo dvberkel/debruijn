@@ -6,7 +6,7 @@ class Cycle
   attr_reader :start
   def initialize(edges, start, cycle = nil)
     if (cycle)
-      @cycles = cycle
+      @cycle = cycle
       @start = cycle[0].source
     else
       @cycle = []
