@@ -7,10 +7,10 @@ class Cycle
     @cycle = []
     @edges = edges
     @start = start
-    find_cycle_among_edge_from_start
+    find_cycle_among_edges_from_start
   end
 
-  def find_cycle_among_edge_from_start
+  def find_cycle_among_edges_from_start
   end
   
   def allEdges
