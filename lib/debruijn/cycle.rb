@@ -3,11 +3,17 @@ class Cycle
     CycleBuilder.new(graph)
   end
 
-  def initialize(edges, start)
-    @cycle = []
-    @edges = edges
-    @start = start
-    find_cycle_among_edges_from_start
+  attr_reader :start
+  def initialize(edges, start, cycle = nil)
+    if (cycle)
+      @cycles = cycle
+      @start = cycle[0].source
+    else
+      @cycle = []
+      @edges = edges
+      @start = start
+      find_cycle_among_edges_from_start
+    end
   end
 
   def find_cycle_among_edges_from_start
