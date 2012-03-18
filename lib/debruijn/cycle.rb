@@ -39,7 +39,17 @@ class Cycle
   end
 
   def merge(cycle)
-    EmptyCycle.new
+    edges, first_time = [], true
+    self.allEdges do |edge|
+      if (first_time && edge.source == cycle.start)
+          first_time = false
+          cycle.allEdges { |other|
+            edges << other
+          }
+      end
+      edges << edge
+    end
+    Cycle.new(nil, nil, edges)
   end
   
   def allEdges
