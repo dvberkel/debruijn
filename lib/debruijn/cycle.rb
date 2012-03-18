@@ -26,6 +26,11 @@ class CycleBuilder
     graph.allEdges {|edge| @edges << edge}
   end
 
+  def avoiding(*edges)
+    @edges = @edges - edges.flatten
+    self
+  end
+
   def startingAt(vertex)
     Cycle.new(@edges, vertex)
   end

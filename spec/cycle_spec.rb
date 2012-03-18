@@ -19,6 +19,20 @@ describe "cycles" do
       
       actual.should == Word.new(alphabet)    
     end
+
+    it "should find a cycle over in a cyclic graph over [#{alphabet.join(', ')}]" do
+      graph = cyclicGraph(alphabet)
+      letter = alphabet[0]
+      graph.addEdgeFrom(Word.new(letter)).to(Word.new(letter))
+     
+      cycle = Cycle.over(graph).avoiding(Edge.new(letter, letter)).startingAt(Word.new(letter))
+      
+      actual = Word.new()
+      
+      cycle.allEdges {|edge| actual = actual.append(edge.label)}
+      
+      actual.should == Word.new(alphabet)    
+    end
   end
 end
 
