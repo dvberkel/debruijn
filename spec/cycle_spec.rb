@@ -15,7 +15,8 @@ describe "cycles" do
   end
 end
 
-def cyclicGraph(*alphabet) 
+def cyclicGraph(*alphabet)
+  alphabet = alphabet.flatten
   graph = Graph.new()
   alphabet.each {|letter| graph.addVertex(Word.new(letter))}
   (0..alphabet.length - 1).each { |index|
