@@ -28,7 +28,7 @@ def cyclicGraph(*alphabet)
   alphabet.each {|letter| graph.addVertex(Word.new(letter))}
   (0..alphabet.length - 1).each { |index|
     source = Word.new(alphabet[index])
-    sink = Word.new(alphabet[index + 1 % alphabet.length])
+    sink = Word.new(alphabet[(index + 1) % alphabet.length])
     graph.addEdgeFrom(source).to(sink).label = alphabet[index]
   }
   graph
