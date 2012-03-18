@@ -17,6 +17,25 @@ class Cycle
   end
 
   def find_cycle_among_edges_from_start
+    path = find_a_path_among_edges_from_to(@edges, @start, @start)
+    @cycle = path.reverse
+  end
+  
+  def find_a_path_among_edges_from_to(available, origin, destination)
+    available.each do |edge|
+      if (edge.source == origin) 
+        if (edge.sink == destination)
+          return Array.new().push(edge)
+        else
+          copy = Set.new().union(available)
+          copy.delete(edge)
+          path = find_a_path_among_edges_from_to(copy, edge.sink, destination)
+          if path
+            return path << edge
+          end
+        end
+      end
+    end
   end
 
   def merge(cycle)
