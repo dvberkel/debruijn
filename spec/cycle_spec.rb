@@ -4,14 +4,21 @@ require 'word'
 
 
 describe "cycles" do
-  it "should find a cycle over a graph" do
-    cycle = Cycle.over(cyclicGraph("a", "b")).startingAt(Word.new("a"))
-    
-    actual = Word.new()
-
-    cycle.allEdges {|edge| actual = actual.append(edge.label)}
-
-    actual.should == Word.new("a", "b")    
+  [
+   ["a", "b"],
+   ["a", "b", "c"],
+   ["a", "b", "c", "d"],
+   ["a", "b", "c", "d", "e"],
+  ].each do |alphabet|
+    it "should find a cycle over in a cyclic graph over [#{alphabet.join(', ')}]" do
+      cycle = Cycle.over(cyclicGraph(alphabet)).startingAt(Word.new(alphabet[0]))
+      
+      actual = Word.new()
+      
+      cycle.allEdges {|edge| actual = actual.append(edge.label)}
+      
+      actual.should == Word.new(alphabet)    
+    end
   end
 end
 
