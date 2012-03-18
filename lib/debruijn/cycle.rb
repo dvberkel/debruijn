@@ -12,11 +12,20 @@ class Cycle
 
   def find_cycle_among_edges_from_start
   end
+
+  def merge(cycle)
+    EmptyCycle.new
+  end
   
   def allEdges
     @cycle.each { |edge|
       yield edge
     }
+  end
+end
+
+class EmptyCycle
+  def allEdges
   end
 end
 
