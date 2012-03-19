@@ -1,5 +1,7 @@
 require "debruijn/version"
 
-module Debruijn
-  # Your code goes here...
+module DeBruijn
+  def overAlphabet(*alphabet)
+    
+  end
 end

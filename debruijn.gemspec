@@ -15,5 +15,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.name          = "debruijn"
   gem.require_paths = ["lib"]
-  gem.version       = Debruijn::VERSION
+  gem.version       = DeBruijn::VERSION
 end

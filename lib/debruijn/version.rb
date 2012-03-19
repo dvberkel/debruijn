@@ -1,3 +1,3 @@
-module Debruijn
+module DeBruijn
   VERSION = "0.0.1"
 end
