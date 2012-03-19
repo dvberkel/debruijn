@@ -29,6 +29,10 @@ class Graph
       yield edge
     }
   end
+
+  def numberOfEdges
+    @edges.length
+  end
 end
 
 class Edge

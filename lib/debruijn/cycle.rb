@@ -28,10 +28,22 @@ class Cycle
       yield edge
     }
   end
+
+  def length
+    @cycles.length
+  end
 end
 
 class EmptyCycle
+  def merge(cycle)
+    cycle
+  end
+
   def allEdges
+  end
+  
+  def length
+    0
   end
 end
 
