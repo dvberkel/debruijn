@@ -14,6 +14,13 @@ class Word
     Word.new(result)
   end
 
+  def subwords(k)
+    copy = [].concat(@letters).concat(@letters)
+    (0..@letters.length).each do |index|
+      yield Word.new(copy[index..(index + k - 1)])
+    end
+  end
+
   def ==(word) 
     self.eql?(word)
   end
