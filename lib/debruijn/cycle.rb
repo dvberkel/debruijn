@@ -30,7 +30,7 @@ class Cycle
   end
 
   def length
-    @cycles.length
+    @cycle.length
   end
 end
 
