@@ -24,7 +24,7 @@ module DeBruijn
     def de_bruijn_graph(k,n)
       alphabet = @alphabet[0..(k-1)]
       graph = Graph.new
-      Words.over(alphabet).of_length(n) do |word|
+      Words.over(alphabet).of_length(n - 1) do |word|
         graph.addVertex(word)
       end
       graph.allVertices do |vertex|
