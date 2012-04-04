@@ -29,7 +29,7 @@ module DeBruijn
       end
       graph.allVertices do |vertex|
         alphabet.each { |letter|
-          graph.addEdgeFrom(vertex).to(vertex.pipe(letter))
+          graph.addEdgeFrom(vertex).to(vertex.pipe(letter)).label = letter
         }
       end
       graph
