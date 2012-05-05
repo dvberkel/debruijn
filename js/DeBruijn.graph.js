@@ -105,10 +105,26 @@
 	    var element = $(view.el);
 	    element.empty();
 	    var svg = d3.select("#" + element.attr('id')).append("svg")
-	        .attr("width", options.width)
-	        .attr("height", options.height);
+	        .attr("viewBox", "0 0 400 400")
+	        .attr("version", "1.1")
+	        .attr("width", 400)
+	        .attr("height", 400);
+	    
+	    svg.append("defs").append("marker")
+	        .attr("id", "Arrow")
+	        .attr("viewBox", "0 0 10 10")
+	        .attr("refX", 15)
+	        .attr("refY", 5)
+	        .attr("markerUnits", "strokeWidth")
+	        .attr("orient", "auto")
+	        .attr("markerWidth", 6)
+	        .attr("markerHeight", 4)
+	        .attr("stroke-width", 2)
+		.append("polyline")
+	        .attr("points", "0,0 10,5 0,10");
+;
 
-	    var force = d3.layout.force().charge(-120).linkDistance(30).size([options.width, options.height])
+	    var force = d3.layout.force().charge(-120).linkDistance(50).size([options.width, options.height])
 	        .nodes(graphData.nodes)
 	        .links(graphData.links).start();
 	    
@@ -116,6 +132,7 @@
 		.data(graphData.links)
 		.enter().append("line")
 		.attr("class", "link")
+	        .attr("marker-end", "url(#Arrow)")
 		.style("stroke-width", 2);
 
 	    var node = svg.selectAll("circle.node")
