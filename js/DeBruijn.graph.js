@@ -63,20 +63,21 @@
     };
 
     var allLinks = function(alphabet, combinations){
-	var links = [], loops = [], searcher = within(combinations);
+	var links = [], searcher = within(combinations);
 	_.each(combinations, function(combination, sourceIndex){
 	    var combi = on(combination);
 	    _.each(alphabet, function(letter){
 		var target = combi.pipe(letter);
 		var targetIndex = searcher.locate(target);
-		if (sourceIndex != targetIndex) {
-		    links.push({source: sourceIndex, target: targetIndex, letter: letter});
-		} else {
-		    loops.push({source: sourceIndex, letter: letter});
-		}
+		links.push({
+		    source: sourceIndex,
+		    target: targetIndex, 
+		    letter: letter, 
+		    loop: sourceIndex == targetIndex
+		});
 	    });
 	});
-	return {links: links, loops: loops};
+	return links;
     };
 
     bruijn.GraphView = Backbone.View.extend({
@@ -96,9 +97,9 @@
 	    var combinations = allCombinations(alphabet, n - 1);
 	    
 	    var nodes = allNodes(combinations);
-	    var all = allLinks(alphabet, combinations);
+	    var links = allLinks(alphabet, combinations);
 	    
-	    return {nodes: nodes, links: all.links, loops: all.loops};
+	    return {nodes: nodes, links: links};
 	},
 	
 	render: function(){
@@ -114,7 +115,8 @@
 	        .attr("width", 400)
 	        .attr("height", 400);
 	    
-	    svg.append("defs").append("marker")
+	    var defs = svg.append("defs");
+	    defs.append("marker")
 	        .attr("id", "Arrow")
 	        .attr("viewBox", "0 0 10 10")
 	        .attr("refX", 15)
@@ -123,9 +125,34 @@
 	        .attr("orient", "auto")
 	        .attr("markerWidth", 6)
 	        .attr("markerHeight", 4)
-	        .attr("stroke-width", 2)
 		    .append("polyline")
 	            .attr("points", "0,0 10,5 0,10");
+	    defs.append("marker")
+	        .attr("id", "LoopArrow")
+	        .attr("viewBox", "0 0 10 10")
+	        .attr("refX", 0)
+	        .attr("refY", 5)
+	        .attr("markerUnits", "strokeWidth")
+	        .attr("orient", "auto")
+	        .attr("markerWidth", 6)
+	        .attr("markerHeight", 4)
+		    .append("polyline")
+	            .attr("points", "0,0 10,5 0,10");
+	    defs.append("marker")
+	        .attr("id", "Loop")
+	        .attr("viewBox", "0 0 12 12")
+	        .attr("refX", 0)
+	        .attr("refY", 6)
+	        .attr("markerUnits", "strokeWidth")
+	        .attr("orient", "auto")
+	        .attr("stroke", "rgba(16,16,16, 0.5)")
+	        .attr("fill", "none")
+	        .attr("markerWidth", 10)
+	        .attr("markerHeight", 10)
+		    .append("path")
+	            .attr("d", "M 0 6 q 9 -7 9 0 q 0 7 -9 0")
+	            .attr("marker-mid", "url(#LoopArrow)")
+	            .attr("stroke-width", 1);
 
 	    var force = d3.layout.force().charge(-120).linkDistance(50).size([options.width, options.height])
 	        .nodes(graphData.nodes)
@@ -135,8 +162,13 @@
 		.data(graphData.links)
 		.enter().append("line")
 		.attr("class", "link")
-	        .attr("marker-end", "url(#Arrow)")
-		.style("stroke-width", 2);
+	        .attr("marker-end", function(d){
+		    if (d.loop) {
+			return "url(#Loop)";
+		    } else {
+			return "url(#Arrow)";
+		    }
+		})
 	    
 	    
 	    var node = svg.selectAll("circle.node")
@@ -144,7 +176,6 @@
 		.enter().append("circle")
 		.attr("class", "node")
 	        .attr("r", 5)
-		.style("fill", "red")
 		.call(force.drag);
 
 	    node.append("title").text(function(d){ return d.word });

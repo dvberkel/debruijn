@@ -1,9 +1,10 @@
 line.link {
     stroke: rgba(16, 16, 16, 0.5);
-    stroke-width: 4px;
+    stroke-width: 2px;
 }
 
 circle.node {
     stroke: #000000;
     stroke-width: 1px;
+    fill: red;
 }
