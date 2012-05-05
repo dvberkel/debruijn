@@ -11,9 +11,12 @@
 	});
 	
 	var example = new DeBruijn.Model();
-	new DeBruijn.VariableView({el: $("#example-k"), model: example, variable: "k"});
-	new DeBruijn.VariableView({el: $("#example-n"), model: example, variable: "n"});
-	new DeBruijn.AlphabetView({el: $("#example-alphabet"), model: example});
+	new DeBruijn.VariableView({el: $("#example-k-a"), model: example, variable: "k"});
+	new DeBruijn.VariableView({el: $("#example-n-a"), model: example, variable: "n"});
+	new DeBruijn.AlphabetView({el: $("#example-alphabet-a"), model: example});
+	new DeBruijn.VariableView({el: $("#example-k-b"), model: example, variable: "k"});
+	new DeBruijn.VariableView({el: $("#example-n-b"), model: example, variable: "n"});
+	new DeBruijn.AlphabetView({el: $("#example-alphabet-b"), model: example});
 	new DeBruijn.SequenceView({el: $("#example-sequence"), model: example});
 	new DeBruijn.ProofView({el: $("#example-proof"), model: example});
 
