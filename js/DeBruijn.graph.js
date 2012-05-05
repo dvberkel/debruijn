@@ -63,16 +63,20 @@
     };
 
     var allLinks = function(alphabet, combinations){
-	var links = [], searcher = within(combinations);
+	var links = [], loops = [], searcher = within(combinations);
 	_.each(combinations, function(combination, sourceIndex){
 	    var combi = on(combination);
 	    _.each(alphabet, function(letter){
 		var target = combi.pipe(letter);
 		var targetIndex = searcher.locate(target);
-		links.push({source: sourceIndex, target: targetIndex, letter: letter});
+		if (sourceIndex != targetIndex) {
+		    links.push({source: sourceIndex, target: targetIndex, letter: letter});
+		} else {
+		    loops.push({source: sourceIndex, letter: letter});
+		}
 	    });
 	});
-	return links
+	return {links: links, loops: loops};
     };
 
     bruijn.GraphView = Backbone.View.extend({
@@ -92,9 +96,9 @@
 	    var combinations = allCombinations(alphabet, n - 1);
 	    
 	    var nodes = allNodes(combinations);
-	    var links = allLinks(alphabet, combinations);
+	    var all = allLinks(alphabet, combinations);
 	    
-	    return {nodes: nodes, links: links};
+	    return {nodes: nodes, links: all.links, loops: all.loops};
 	},
 	
 	render: function(){
@@ -120,9 +124,8 @@
 	        .attr("markerWidth", 6)
 	        .attr("markerHeight", 4)
 	        .attr("stroke-width", 2)
-		.append("polyline")
-	        .attr("points", "0,0 10,5 0,10");
-;
+		    .append("polyline")
+	            .attr("points", "0,0 10,5 0,10");
 
 	    var force = d3.layout.force().charge(-120).linkDistance(50).size([options.width, options.height])
 	        .nodes(graphData.nodes)
@@ -134,7 +137,8 @@
 		.attr("class", "link")
 	        .attr("marker-end", "url(#Arrow)")
 		.style("stroke-width", 2);
-
+	    
+	    
 	    var node = svg.selectAll("circle.node")
 	        .data(graphData.nodes)
 		.enter().append("circle")
@@ -142,7 +146,7 @@
 	        .attr("r", 5)
 		.style("fill", "red")
 		.call(force.drag);
-	    
+
 	    node.append("title").text(function(d){ return d.word });
 	    
 	    force.on("tick", function(){
