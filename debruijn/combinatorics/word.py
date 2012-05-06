@@ -13,7 +13,9 @@ class Word:
         return Word(*letters)
     
     def __eq__(self, other):
-        return self.letters == other.letters
+        if (isinstance(other, Word)):
+            return self.letters == other.letters
+        return False
 
     def __hash__(self):
         return hash(self.letters)
