@@ -2,5 +2,6 @@ branches:
   only:
     - java-maven-finished
     - java-ant-finished
+    - ruby-finished
 
-language: java
+language: ruby
