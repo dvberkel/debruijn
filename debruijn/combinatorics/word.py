@@ -6,6 +6,11 @@ class Word:
         letters = self.letters[:]
         letters.append(letter)
         return Word(*letters)
+
+    def pipe(self, letter):
+        letters = self.letters[1:]
+        letters.append(letter)
+        return Word(*letters)
     
     def __eq__(self, other):
         return self.letters == other.letters
