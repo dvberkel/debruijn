@@ -8,4 +8,4 @@ class WordGenerator:
         self.alphabet = alphabet
     
     def ofLength(self, n):
-        yield Word("")
+        yield Word()
