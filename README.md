@@ -6,7 +6,7 @@ support code which a participate can use to start-off implementing De
 Bruijn sequences. 
 
 See the 
-[main branch](https://github.com/dvberkel/debruijn/tree/java-maven "Main branch of debruijn project")
+[main branch](https://github.com/dvberkel/debruijn "Main branch of debruijn project")
 for an exposition about the entire project.
 
 Goals
