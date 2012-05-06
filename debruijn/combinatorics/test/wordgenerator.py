@@ -11,7 +11,7 @@ class testWordGenerator(unittest.TestCase):
         for word in allWordsOver(*alphabet).ofLength(0):
             words.append(word)
 
-        self.assertTrue(Word() in words)
+        self.assertTrue(Word("") in words)
 
     def testAllWordsOfLength1(self):
         alphabet = ["a", "b"]

@@ -1,3 +1,5 @@
+from debruijn.combinatorics.word import Word
+
 def allWordsOver(*alphabet):
     return WordGenerator(list(alphabet))
 
@@ -6,4 +8,4 @@ class WordGenerator:
         self.alphabet = alphabet
     
     def ofLength(self, n):
-        yield []
+        yield Word("")
