@@ -1,12 +1,14 @@
 Ruby De Bruijn Sequences
 ========================
 
+[![Build Status](https://secure.travis-ci.org/dvberkel/debruijn.png?branch=ruby-finished)](http://travis-ci.org/dvberkel/debruijn)
+
 This branch is a compendium to the De Bruijn project. It provides
 support code which a participate can use to start-off implementing De
 Bruijn sequences. 
 
 See the 
-[main branch](https://github.com/dvberkel/debruijn/tree/java-maven "Main branch of debruijn project")
+[main branch](https://github.com/dvberkel/debruijn "Main branch of debruijn project")
 for an exposition about the entire project.
 
 Goals
