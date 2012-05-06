@@ -38,7 +38,7 @@ module DeBruijn
     def eulerCycle(graph)
       cycle = EmptyCycle.new
       while (cycle.length < graph.numberOfEdges)
-        candidate, avoid = candidateAlong(graph, cycle), Set.new
+        candidate, avoid = candidateAlong(graph, cycle), []
         cycle.allEdges {|edge| avoid << edge}
         cycle = cycle.merge(Cycle.over(graph).avoiding(avoid).startingAt(candidate))
       end
