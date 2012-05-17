@@ -170,6 +170,7 @@
 		    }
 		})
 	    
+	    link.append("title").text(function(d){ return d.letter; });
 	    
 	    var node = svg.selectAll("circle.node")
 	        .data(graphData.nodes)
