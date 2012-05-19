@@ -177,16 +177,18 @@
 	}
     });
 
-    bruijn.EulerCycleView = Backbone.View.extend({
+    bruijn.EdgeLabelView = Backbone.View.extend({
 	initialize : function(){
+	    this.model.bind("change", function(){
+		this.render();
+	    }, this);
 	    this.render();
 	},
 
 	render : function(){
-	    var view = this;
-	    var element = $(view.el).empty();
-	    $("<h3>Euler Cycle</h3>").appendTo(element);
-	    $("<p>A path which starts and finishes at the vertex and visits all edges precisly once.</p>").appendTo(element);
+	    var model = this.model;
+	    var sequence = DeBruijn.sequence(model.get("alphabet").slice(0, model.get("k")), model.get("n"));
+	    $(this.el).html(sequence.join(" "));
 	}
     });
 })( jQuery, _, Backbone, DeBruijn );
