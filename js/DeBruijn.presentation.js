@@ -147,4 +147,33 @@
 	    });
 	}
     });
+
+    bruijn.PipeView = Backbone.View.extend({
+	template : _.template("<li><%= word %> | <%= letter %> &rarr; <%= result %></li>"),
+
+	initialize : function(){
+	    this.model.bind("change", function(){ this.render(); }, this);
+	    this.render();
+	},
+
+	render : function(){
+	    var view = this;
+	    var model = this.model;
+	    var alphabet = model.get("alphabet").slice(0, model.get("k"));
+	    var n = model.get("n");
+	    var element = $(view.el).empty();
+	    var ul = $("<ul>").appendTo(element);
+	    bruijn.Combinatorics.allCombinations(alphabet, n-1, function(word){
+		_.each(alphabet, function(letter){
+		    var result = word.slice(1, word.length);
+		    result.push(letter);
+		    $(view.template({ 
+			word : word.join(""), 
+			letter: letter, 
+			result: result.join("") 
+		    })).appendTo(ul);
+		});
+	    });
+	}
+    });
 })( jQuery, _, Backbone, DeBruijn );

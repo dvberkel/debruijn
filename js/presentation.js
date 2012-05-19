@@ -34,8 +34,9 @@
 	    $("#overlay").hide();
 	});
 	$("#pipe").mouseenter(function(e){
-	    $("#overlay").css({ left: e.pageX, top: e.pageY }).show();
-	}).mouseleave(function(e){
+	    var overlay = $("#overlay").css({ left: e.pageX, top: e.pageY }).show();
+	    new DeBruijn.PipeView({ el : overlay, model : graph });
+ 	}).mouseleave(function(e){
 	    $("#overlay").hide();
 	});
 	$("#cycle").mouseenter(function(e){
