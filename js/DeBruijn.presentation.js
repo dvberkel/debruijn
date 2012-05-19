@@ -125,4 +125,18 @@
 	    }
 	}
     });
+
+    bruijn.CombinationsView = Backbone.View.extend({
+	initialize : function(){
+	    this.render();
+	},
+
+	render : function(){
+	    var view = this;
+	    var element = $(this.el);
+	    element.empty();
+	    var ul = $("<ul>").appendTo(element);
+	    $("<li>aa</li>").appendTo(ul)
+	}
+    });
 })( jQuery, _, Backbone, DeBruijn );

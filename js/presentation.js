@@ -28,6 +28,17 @@
 
 	$("#overlay").addClass("overlay").hide();
 	$("#combinations").mouseenter(function(e){
+	    var overlay = $("#overlay").css({ left: e.pageX, top: e.pageY }).show();
+	    new DeBruijn.CombinationsView({ el : overlay });
+	}).mouseleave(function(e){
+	    $("#overlay").hide();
+	});
+	$("#pipe").mouseenter(function(e){
+	    $("#overlay").css({ left: e.pageX, top: e.pageY }).show();
+	}).mouseleave(function(e){
+	    $("#overlay").hide();
+	});
+	$("#cycle").mouseenter(function(e){
 	    $("#overlay").css({ left: e.pageX, top: e.pageY }).show();
 	}).mouseleave(function(e){
 	    $("#overlay").hide();
