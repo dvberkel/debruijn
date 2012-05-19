@@ -176,4 +176,17 @@
 	    });
 	}
     });
+
+    bruijn.EulerCycleView = Backbone.View.extend({
+	initialize : function(){
+	    this.render();
+	},
+
+	render : function(){
+	    var view = this;
+	    var element = $(view.el).empty();
+	    $("<h3>Euler Cycle</h3>").appendTo(element);
+	    $("<p>A path which starts and finishes at the vertex and visits all edges precisly once.</p>").appendTo(element);
+	}
+    });
 })( jQuery, _, Backbone, DeBruijn );
