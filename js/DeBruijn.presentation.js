@@ -127,16 +127,24 @@
     });
 
     bruijn.CombinationsView = Backbone.View.extend({
+	template : _.template("<li><%= word %></li>"),
+
 	initialize : function(){
+	    this.model.bind("change", function(){ this.render(); }, this);
 	    this.render();
 	},
 
 	render : function(){
 	    var view = this;
-	    var element = $(this.el);
-	    element.empty();
+	    var model = this.model;
+	    var alphabet = model.get("alphabet");
+	    var k = model.get("k");
+	    var n = model.get("n");
+	    var element = $(view.el).empty();
 	    var ul = $("<ul>").appendTo(element);
-	    $("<li>aa</li>").appendTo(ul)
+	    bruijn.Combinatorics.allCombinations(alphabet.slice(0,k), n-1, function(word){
+		$(view.template({ word : word.join("") })).appendTo(ul);
+	    });
 	}
     });
 })( jQuery, _, Backbone, DeBruijn );
