@@ -6,3 +6,16 @@
     width: 30px;
     height: 25px;
 }
+
+.overlay {
+    position: absolute;
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: black !important;
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    background-color: white;
+    width: 500px;
+    height: 300px;
+}

@@ -25,5 +25,12 @@
 	new DeBruijn.VariableView({el: $("#graph-n"), model: graph, variable: "n"});
 	new DeBruijn.AlphabetView({el: $("#graph-alphabet"), model: graph});
 	new DeBruijn.GraphView({el: $("#graph"), model: graph, width: 400, height: 400});
+
+	$("#overlay").addClass("overlay").hide();
+	$("#combinations").mouseenter(function(e){
+	    $("#overlay").css({ left: e.pageX, top: e.pageY }).show();
+	}).mouseleave(function(e){
+	    $("#overlay").hide();
+	});
     });
 })( jQuery );

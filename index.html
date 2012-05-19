@@ -90,7 +90,7 @@
 	  To generate a \(B(k,n)\) de Bruijn sequences one can execute the following algorithm.
 	</p>
 	<ol>
-	  <li>Generate all combinations of length \(n-1\)</li>
+	  <li>Generate all <span id="combinations">combinations</span> of length \(n-1\)</li>
 	  <li>Connect a combinations \(w\) with \(w|l\) for each letter \(l\)</li>
 	  <li>Find an Eulerian Cycle</li>
 	</ol>
@@ -101,6 +101,14 @@
 	    <span id="graph-alphabet">_</span>.  
 	  </p>
 	  <div id="graph"></div>
+	</div>
+	<div id="overlay">
+	  <ul>
+	    <li>aa</li>
+	    <li>ab</li>
+	    <li>ba</li>
+	    <li>bb</li>
+	  </ul>
 	</div>
       </section>
 
