@@ -177,6 +177,18 @@
 	}
     });
 
+    bruijn.EulerCycleView = Backbone.View.extend({
+	initialize : function(){
+	    this.render();
+	},
+
+	render : function(){
+	    $(this.el).empty();
+	    $(this.el).append("<h3>Euler Cycle</h3>");
+	    $(this.el).append("<p>A path with same start as finish vertex which visits every edge.</p>");
+	}
+    });
+
     bruijn.EdgeLabelView = Backbone.View.extend({
 	initialize : function(){
 	    this.model.bind("change", function(){
