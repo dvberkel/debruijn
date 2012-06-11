@@ -16,6 +16,17 @@ moment.
 
 Your mission, should you chose to accept it, is to make all the test pass.
 
+### Test Order
+
+The order in which to examine the tests is outlined below.
+
+1. WordGeneratorTest. This test verifies the contract of the WordGenerator class.
+2. CycleTest. Tests the functionality of the cycle class.
+3. DeBruijnTest. The centerpiece test for the application. It
+   culminates all the parts of the application.  
+
+There are more tests to examine, but currently the above tests are failing.
+
 Environment
 -----------
 
