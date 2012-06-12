@@ -18,6 +18,16 @@ The project has a number of tests. All of which are failing at the moment.
 
 Your mission, should you chose to accept it, is to make all the test pass.
 
+### Test Order
+
+The order in which to examine the specs is outlined below.
+
+1. wordgenerator_spec.rb
+2. cycle_spec.rb
+3. debruijn_spec.rb
+
+There are more specs to examine, but currently the above specs are failing.
+
 Environment
 -----------
 
