@@ -22,7 +22,7 @@ describe "debruijn" do
     k = fixture[0]
     n = fixture[1]
     it "should correctly create a B(#{k}, #{n}) De Bruijn sequence" do
-      word = DeBruijn.overAlphabet("a", "b", "c").sequence(k, n)
+      word = DeBruijn.over_alphabet("a", "b", "c").sequence(k, n)
       
       word.should be_debruijn(k,n)
     end

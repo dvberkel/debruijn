@@ -4,7 +4,7 @@ require "word_generator"
 require "cycle"
 
 module DeBruijn
-  def self.overAlphabet(*alphabet)
+  def self.over_alphabet(*alphabet)
      DeBruijnGenerator.new(alphabet) 
   end
 
@@ -14,10 +14,10 @@ module DeBruijn
     end
 
     def sequence(k, n)
-      cycle = eulerCycle(de_bruijn_graph(k,n))
+      cycle = euler_cycle(de_bruijn_graph(k,n))
       
       word = Word.new()
-      cycle.allEdges {|edge| word = word.append(edge.label)}
+      cycle.all_adges {|edge| word = word.append(edge.label)}
       word
     end
 
@@ -25,38 +25,38 @@ module DeBruijn
       alphabet = @alphabet[0..(k-1)]
       graph = Graph.new
       Words.over(alphabet).of_length(n - 1) do |word|
-        graph.addVertex(word)
+        graph.add_vertex(word)
       end
-      graph.allVertices do |vertex|
+      graph.all_vertices do |vertex|
         alphabet.each { |letter|
-          graph.addEdgeFrom(vertex).to(vertex.pipe(letter)).label = letter
+          graph.add_edge_from(vertex).to(vertex.pipe(letter)).label = letter
         }
       end
       graph
     end
 
-    def eulerCycle(graph)
+    def euler_cycle(graph)
       cycle = EmptyCycle.new
-      while (cycle.length < graph.numberOfEdges)
-        candidate, avoid = candidateAlong(graph, cycle), []
-        cycle.allEdges {|edge| avoid << edge}
-        cycle = cycle.merge(Cycle.over(graph).avoiding(avoid).startingAt(candidate))
+      while (cycle.length < graph.number_of_edges)
+        candidate, avoid = candidate_along(graph, cycle), []
+        cycle.all_adges {|edge| avoid << edge}
+        cycle = cycle.merge(Cycle.over(graph).avoiding(avoid).starting_at(candidate))
       end
       cycle
     end
 
-    def candidateAlong(graph, cycle)
+    def candidate_along(graph, cycle)
       candidates = []
       if (cycle.length == 0)
-        graph.allEdges {|edge| candidates << edge.source}
+        graph.all_adges {|edge| candidates << edge.source}
       else
-        startingPoints, avoid = Set.new, Set.new
-        cycle.allEdges do |edge|
-          startingPoints << edge.source
+        starting_points, avoid = Set.new, Set.new
+        cycle.all_adges do |edge|
+          starting_points << edge.source
           avoid << edge          
         end
-        graph.allEdges do |edge|
-          if (not avoid.include?(edge) && startingPoints.include?(edge.source))
+        graph.all_adges do |edge|
+          if (not avoid.include?(edge) && starting_points.include?(edge.source))
             candidates << edge.source
           end
         end

@@ -32,13 +32,13 @@ describe "Words" do
   ].each do |fixture|
     alphabet = fixture[0]
     length = fixture[1]
-    expectedSet = fixture[2]
+    expected_set = fixture[2]
     it "should generate all the words over #{alphabet} of length #{length}" do
       words = []
       Words.over(alphabet).of_length(length) { |word|
         words << word
       }
-      words.to_set.should == expectedSet
+      words.to_set.should == expected_set
     end
   end
 end
