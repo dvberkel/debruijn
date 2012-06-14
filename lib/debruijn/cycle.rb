@@ -23,7 +23,7 @@ class Cycle
     EmptyCycle.new
   end
   
-  def allEdges
+  def all_adges
     @cycle.each { |edge|
       yield edge
     }
@@ -39,7 +39,7 @@ class EmptyCycle
     cycle
   end
 
-  def allEdges
+  def all_adges
   end
   
   def length
@@ -50,7 +50,7 @@ end
 class CycleBuilder
   def initialize(graph)
     @edges = [].to_set
-    graph.allEdges {|edge| @edges << edge}
+    graph.all_adges {|edge| @edges << edge}
   end
 
   def avoiding(*edges)
@@ -58,7 +58,7 @@ class CycleBuilder
     self
   end
 
-  def startingAt(vertex)
+  def starting_at(vertex)
     Cycle.new(@edges, vertex)
   end
 end

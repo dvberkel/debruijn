@@ -4,33 +4,33 @@ class Graph
     @edges = []
   end
 
-  def addVertex(vertex)
+  def add_vertex(vertex)
     @vertices << vertex
   end
 
-  def allVertices
+  def all_vertices
     @vertices.each { |vertex|
       yield vertex
     }
   end
 
-  def addEdgeFrom(source)
+  def add_edge_from(source)
     EdgeAdder.new(self, source)
   end
 
-  def addEdge(source, sink)
+  def add_edge(source, sink)
     edge = Edge.new(source, sink)
     @edges << edge
     edge
   end
 
-  def allEdges
+  def all_adges
     @edges.each { |edge|
       yield edge
     }
   end
 
-  def numberOfEdges
+  def number_of_edges
     @edges.length
   end
 end
@@ -64,6 +64,6 @@ class EdgeAdder
   end
 
   def to(sink)
-    @graph.addEdge(@source, sink)
+    @graph.add_edge(@source, sink)
   end
 end
