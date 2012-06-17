@@ -17,7 +17,7 @@ module DeBruijn
       cycle = euler_cycle(de_bruijn_graph(k,n))
       
       word = Word.new()
-      cycle.all_adges {|edge| word = word.append(edge.label)}
+      cycle.all_edges {|edge| word = word.append(edge.label)}
       word
     end
 
@@ -39,7 +39,7 @@ module DeBruijn
       cycle = EmptyCycle.new
       while (cycle.length < graph.number_of_edges)
         candidate, avoid = candidate_along(graph, cycle), []
-        cycle.all_adges {|edge| avoid << edge}
+        cycle.all_edges {|edge| avoid << edge}
         cycle = cycle.merge(Cycle.over(graph).avoiding(avoid).starting_at(candidate))
       end
       cycle
@@ -48,14 +48,14 @@ module DeBruijn
     def candidate_along(graph, cycle)
       candidates = []
       if (cycle.length == 0)
-        graph.all_adges {|edge| candidates << edge.source}
+        graph.all_edges {|edge| candidates << edge.source}
       else
         starting_points, avoid = Set.new, Set.new
-        cycle.all_adges do |edge|
+        cycle.all_edges do |edge|
           starting_points << edge.source
           avoid << edge          
         end
-        graph.all_adges do |edge|
+        graph.all_edges do |edge|
           if (not avoid.include?(edge) && starting_points.include?(edge.source))
             candidates << edge.source
           end

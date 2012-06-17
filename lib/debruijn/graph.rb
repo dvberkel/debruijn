@@ -24,7 +24,7 @@ class Graph
     edge
   end
 
-  def all_adges
+  def all_edges
     @edges.each { |edge|
       yield edge
     }

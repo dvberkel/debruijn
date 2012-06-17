@@ -22,7 +22,7 @@ describe "cycle merge" do
       
       actual = Word.new()
       
-      cycle.all_adges {|edge| actual = actual.append(edge.label)}
+      cycle.all_edges {|edge| actual = actual.append(edge.label)}
       
       actual.should == Word.new(expected)
     end
