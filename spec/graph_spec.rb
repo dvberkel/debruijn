@@ -37,7 +37,7 @@ describe "graph" do
       it "should be able to add #{edges.length} edges" do
         count, graph = 0, create_graph(alphabet, edges)
 
-        graph.all_adges {count += 1}
+        graph.all_edges {count += 1}
 
         count.should == edges.length
       end
@@ -45,7 +45,7 @@ describe "graph" do
       it "should be able to add #{edges.length} correct edges" do
         collector, graph = [], create_graph(alphabet, edges)
 
-        graph.all_adges { |edge| collector << edge}
+        graph.all_edges { |edge| collector << edge}
 
         collector.to_set.should == (edges.map {|edge| Edge.new(Word.new(edge[0]), Word.new(edge[1]))}).to_set
       end
